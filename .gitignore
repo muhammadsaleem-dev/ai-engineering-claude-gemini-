@@ -1,0 +1,28 @@
+# Environment variables and API keys (CRITICAL: NEVER COMMIT SECRETS)
+.env
+
+# Virtual environments
+.venv
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# IDE settings (local paths)
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db

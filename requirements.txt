@@ -1,0 +1,10 @@
+# Core AI SDKs
+anthropic>=1.8.0
+google-genai>=2.27.0
+
+# Environment and networking
+python-dotenv>=1.0.0
+brotlicffi>=1.2.0.0
+
+# Jupyter environment
+ipykernel>=6.0.0
