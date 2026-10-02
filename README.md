@@ -63,8 +63,8 @@ This project implements the full curriculum from Anthropic's **"Building with th
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/ai-engineering-claude-gemini.git
-cd ai-engineering-claude-gemini
+git clone https://github.com/muhammadsaleem-dev/ai-engineering-claude-gemini-.git
+cd ai-engineering-claude-gemini-
 ```
 
 ### 2. Set up the Python Environment
