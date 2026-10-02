@@ -22,6 +22,14 @@ This project implements the full curriculum from Anthropic's **"Building with th
 
 ---
 
+## 🌐 Live Documentation (GitHub Pages)
+
+> 🚀 **Module 01 Capstone Milestone**:
+> As soon as Module 01 Part 2 is completed, GitHub Pages will be activated to host this entire repository as an interactive, searchable handbook at:
+> **`https://muhammadsaleem-dev.github.io/ai-engineering-claude-gemini-/`**
+
+---
+
 ## 📂 Repository Structure
 
 ```text

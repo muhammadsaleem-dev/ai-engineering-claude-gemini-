@@ -37,6 +37,7 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [ ] **Controlled Model Output & Structured Data**: Forcing JSON and schema compliance
 - [ ] **Structured Data Exercise**: Parsing, validation, and real-world extraction
 - [ ] **Optimizing Output & Dialogue**: Graded assignment and second interactive dialogue
+- [ ] **Module 01 Capstone**: 🌐 Deploy GitHub Pages live documentation website
 
 ---
 
