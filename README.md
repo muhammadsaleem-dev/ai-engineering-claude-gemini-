@@ -33,11 +33,13 @@ This project implements the full curriculum from Anthropic's **"Building with th
 ## 📂 Repository Structure
 
 ```text
-├── 01-getting-started/                     # ✅ COMPLETED: API fundamentals, requests, parameters
+├── 01-getting-started/                     # 🏃 ACTIVE: API fundamentals & Controlling Output
 │   ├── 001-claude-requests.ipynb           # Anthropic Messages API (Single-turn & Multi-turn)
 │   ├── 001-gemini-requests.ipynb           # Google Gemini API (Single-turn, Multi-turn & chats.create)
 │   ├── 002-claude-chatbot-exercise.ipynb   # Interactive Notebook Chatbot (Course exercise)
 │   ├── 002-gemini-chatbot-exercise.ipynb   # Interactive Notebook Chatbot (Free Gemini execution)
+│   ├── 003-claude-system-prompts.ipynb     # System Prompts & Dynamic Params (Course 002_system_prompt)
+│   ├── 003-gemini-system-prompts.ipynb     # System Instructions Companion (Free Gemini execution)
 │   ├── module-01-dialogue-review.md        # Coursera Dialogue Assessment Q&A & Cheat-sheet
 │   └── README.md                           # Comprehensive Module 1 revision guide
 │

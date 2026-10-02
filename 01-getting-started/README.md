@@ -30,7 +30,8 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [x] **Assessment & Dialogue**: Graded assignment & interactive tutor dialogue
 
 ### Part 2: Controlling Claude's Output (🔄 Current / In Progress)
-- [ ] **System Prompts & Exercise**: Guiding role, persona, and behavioral boundaries
+- [x] **System Prompts**: Guiding role, persona, and behavioral boundaries
+- [ ] **Exercise on Writing a System Prompt**: Practical prompt tuning
 - [ ] **Temperature**: Sampling control (deterministic 0.0 vs. creative 1.0)
 - [ ] **Practical Scenario**: Real-world application case study
 - [ ] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
@@ -46,6 +47,8 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [001-gemini-requests.ipynb](001-gemini-requests.ipynb) — Google Gemini companion implementation (Free execution).
 - [002-claude-chatbot-exercise.ipynb](002-claude-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Course `001_requests_exercise.ipynb`).
 - [002-gemini-chatbot-exercise.ipynb](002-gemini-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Free Gemini execution).
+- [003-claude-system-prompts.ipynb](003-claude-system-prompts.ipynb) — System Prompts & Dynamic Params (Course `002_system_prompt.ipynb`).
+- [003-gemini-system-prompts.ipynb](003-gemini-system-prompts.ipynb) — System Instructions Companion (Free Gemini execution).
 - [module-01-dialogue-review.md](module-01-dialogue-review.md) — 💬 Coursera Interactive Dialogue Assessment & Cheat-Sheet.
 
 ---
@@ -240,6 +243,44 @@ while True:
 > - **The Cause**: Pressing **Enter** without typing anything produces an empty string (`user_input = ""`). The API validation layer discards empty text blocks, causing the payload to effectively terminate on the previous `model`/`assistant` response.
 > - **The Rule**: In both Claude and Gemini, the message payload must strictly alternate roles and **MUST end with a non-empty `user` turn**.
 > - **The Fix**: Always validate input with `if not user_input.strip(): continue` before appending to the message history.
+
+---
+
+## 🎭 System Prompts: Persona & Behavioral Steering
+
+System prompts provide meta-level instructions that define the model's persona, tone, guardrails, and behavioral boundaries before conversational turns begin.
+
+### 🎯 Case Study: The Math Tutor Specialist
+| Without System Prompt (Default) | With Math Tutor System Prompt |
+| :--- | :--- |
+| User: *"How do I solve $5x + 3 = 2$ for $x$?"* | User: *"How do I solve $5x + 3 = 2$ for $x$?"* |
+| **Model gives away full solution**: <br>`Subtract 3: 5x = -1, Divide by 5: x = -1/5` | **Model guides step-by-step**: <br>`"Our goal is to isolate x. What do you think we should do first to move the +3?"` |
+
+### 🛠️ API Parameter Comparison: Claude vs. Gemini
+
+| Feature | Anthropic Claude SDK | Google Gemini SDK |
+| :--- | :--- | :--- |
+| **Parameter Location** | Top-level argument `system="..."` | Inside `config={"system_instruction": "..."}` |
+| **Handling `None`** | ⚠️ **Throws error if passed `system=None`!** Must omit key dynamically. | Safely omitted or passed conditionally in `config`. |
+
+### ⚠️ Crucial Gotcha: Dynamic Parameters Unpacking
+In the Anthropic Python SDK, calling `client.messages.create(..., system=None)` raises a validation error. To create a flexible, reusable `chat()` helper function, dynamically construct the `params` dictionary:
+
+```python
+def chat(messages, system=None):
+    params = {
+        "model": model,
+        "max_tokens": 1000,
+        "messages": messages,
+    }
+
+    # Only include the "system" key if a system prompt was actually provided
+    if system:
+        params["system"] = system
+
+    message = client.messages.create(**params)
+    return message.content[0].text
+```
 
 ---
 
