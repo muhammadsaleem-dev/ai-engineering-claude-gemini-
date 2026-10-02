@@ -33,8 +33,8 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [x] **System Prompts**: Guiding role, persona, and behavioral boundaries
 - [x] **Exercise on Writing a System Prompt**: Practical prompt tuning (Concise Python Engineer)
 - [x] **Temperature**: Sampling control (deterministic 0.0 vs. creative 1.0)
-- [ ] **Practical Scenario**: Real-world application case study
-- [ ] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
+- [x] **Practical Scenario**: Real-world application case study (Customer Support Specialist AI)
+- [x] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
 - [ ] **Controlled Model Output & Structured Data**: Forcing JSON and schema compliance
 - [ ] **Structured Data Exercise**: Parsing, validation, and real-world extraction
 - [ ] **Optimizing Output & Dialogue**: Graded assignment and second interactive dialogue
@@ -51,6 +51,8 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [003-gemini-system-prompts.ipynb](003-gemini-system-prompts.ipynb) — System Instructions Companion (Free Gemini execution).
 - [004-claude-temperature.ipynb](004-claude-temperature.ipynb) — Temperature & Sampling Randomness (Claude).
 - [004-gemini-temperature.ipynb](004-gemini-temperature.ipynb) — Temperature Parameter Companion (Free Gemini execution).
+- [005-claude-streaming.ipynb](005-claude-streaming.ipynb) — Response Streaming & Event Handling (Claude `messages.stream`).
+- [005-gemini-streaming.ipynb](005-gemini-streaming.ipynb) — Response Streaming Companion (Google GenAI `generate_content_stream` & `chats`).
 - [module-01-dialogue-review.md](module-01-dialogue-review.md) — 💬 Coursera Interactive Dialogue Assessment & Cheat-Sheet.
 
 ---
@@ -426,4 +428,133 @@ def handle_customer_query(client, messages, intent="factual"):
 > - **Model Processing Pipeline**: The 4-stage transformation from raw text $\rightarrow$ tokens $\rightarrow$ vector embeddings $\rightarrow$ contextual attention $\rightarrow$ next-token generation.
 > - **Stop Conditions**: Always inspect `response.stop_reason` (`end_turn` vs. `max_tokens`) to ensure responses weren't prematurely cut off.
 > - **Token Accounting**: Track `usage.input_tokens` and `usage.output_tokens` to monitor latency, cost, and rate limits.
+
+---
+
+## 🌊 Response Streaming: Real-Time Token Generation
+
+### ⚡ The Problem: Time-To-First-Token (TTFT) Friction
+In standard synchronous calls, generation blocks completely until the model generates the entire response. For lengthy explanations or complex reasoning, this can take **10 to 30 seconds**.
+Users left staring at a spinning loader perceive the application as unresponsive or broken.
+
+```text
+❌ Synchronous Request (Blocked):
+User ──► Request ──► Server ──► Claude (Generates for 10-30s...) ──► Full Message ──► User sees text all at once
+
+✅ Streamed Request (Instant Feedback):
+User ──► Request ──► Server ──► Claude
+                                  │
+                                  ├──► Event 1: "Quantum "    ──► Relayed to User (~0.8s)
+                                  ├──► Event 2: "computing "  ──► Relayed to User (~1.0s)
+                                  ├──► Event 3: "is a type "  ──► Relayed to User (~1.2s)
+                                  └──► Event N: "of physics." ──► Relayed to User (~2.1s)
+```
+
+### 📡 The Stream Event Lifecycle
+Anthropic's Messages API streams structured events over a single persistent Server-Sent Events (SSE) connection:
+
+```text
+ ┌─────────────────────────────────────────────────────────────┐
+ │ 1. RawMessageStartEvent / MessageStart                      │
+ │    • Sent immediately when Claude accepts the request       │
+ │    • Contains initial message metadata (id, role, model)    │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │ 2. RawContentBlockStartEvent / ContentBlockStart            │
+ │    • Marks the beginning of a content block (text or tool)  │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │ 3. RawContentBlockDeltaEvent / ContentBlockDelta (REPEATED) │
+ │    • ⭐ CONTAINS THE GENERATED TEXT CHUNKS ⭐               │
+ │    • Emitted continuously as new tokens are predicted       │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │ 4. RawContentBlockStopEvent / ContentBlockStop              │
+ │    • Marks the completion of the current content block      │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │ 5. RawMessageDeltaEvent / MessageDelta                      │
+ │    • Emits final completion data: stop_reason & usage stats │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │ 6. RawMessageStopEvent / MessageStop                        │
+ │    • Formal closure event signaling the end of the stream   │
+ └─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 🛠️ Claude Streaming Implementations
+
+#### Pattern A: High-Level Context Manager (`client.messages.stream`) — Recommended
+Provides an ergonomic `.text_stream` iterator and handles connection lifecycles automatically:
+
+```python
+with client.messages.stream(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1000,
+    messages=messages,
+) as stream:
+    for text in stream.text_stream:
+        print(text, end="", flush=True)
+
+# Collect accumulated full message for database storage
+final_message = stream.get_final_message()
+print("\nTokens consumed:", final_message.usage.output_tokens)
+```
+
+#### Pattern B: Low-Level Event Streaming (`stream=True`)
+Directly iterate through raw SDK events when you need low-level telemetry, tool-call chunk tracking, or custom event routing:
+
+```python
+stream = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1000,
+    messages=messages,
+    stream=True,
+)
+
+for event in stream:
+    if event.type == "content_block_delta":
+        print(event.delta.text, end="", flush=True)
+```
+
+---
+
+### ♊ Gemini Streaming Comparison (`google-genai`)
+
+| Feature | Anthropic Claude | Google Gemini (`google-genai`) |
+| :--- | :--- | :--- |
+| **High-Level Text Iterator** | `stream.text_stream` | `for chunk in response: chunk.text` |
+| **Chat Session Streaming** | Manual event accumulator | `chat.send_message_stream(prompt)` |
+| **Accumulated Final Message** | `stream.get_final_message()` | `chat.get_history()` (auto-maintained) |
+| **Low-Level Method** | `client.messages.create(stream=True)` | `client.models.generate_content_stream()` |
+
+#### Gemini Chat Streaming Implementation
+```python
+from google import genai
+
+client = genai.Client()
+chat = client.chats.create(model="gemini-3.5-flash-lite")
+
+response = chat.send_message_stream(
+    "Write a 1 sentence description of a fake database"
+)
+for chunk in response:
+    print(chunk.text, end="", flush=True)
+
+# Conversation history is updated automatically
+print("\nHistory length:", len(chat.get_history()))
+```
+
 
