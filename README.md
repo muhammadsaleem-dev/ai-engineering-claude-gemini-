@@ -40,6 +40,8 @@ This project implements the full curriculum from Anthropic's **"Building with th
 │   ├── 002-gemini-chatbot-exercise.ipynb   # Interactive Notebook Chatbot (Free Gemini execution)
 │   ├── 003-claude-system-prompts.ipynb     # System Prompts & Dynamic Params (Course 002_system_prompt)
 │   ├── 003-gemini-system-prompts.ipynb     # System Instructions Companion (Free Gemini execution)
+│   ├── 004-claude-temperature.ipynb        # Temperature & Sampling Randomness (Claude)
+│   ├── 004-gemini-temperature.ipynb        # Temperature Parameter Companion (Free Gemini execution)
 │   ├── module-01-dialogue-review.md        # Coursera Dialogue Assessment Q&A & Cheat-sheet
 │   └── README.md                           # Comprehensive Module 1 revision guide
 │

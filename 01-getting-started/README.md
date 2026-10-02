@@ -32,7 +32,7 @@ This module covers foundational API connectivity, request lifecycles, and core p
 ### Part 2: Controlling Claude's Output (🔄 Current / In Progress)
 - [x] **System Prompts**: Guiding role, persona, and behavioral boundaries
 - [x] **Exercise on Writing a System Prompt**: Practical prompt tuning (Concise Python Engineer)
-- [ ] **Temperature**: Sampling control (deterministic 0.0 vs. creative 1.0)
+- [x] **Temperature**: Sampling control (deterministic 0.0 vs. creative 1.0)
 - [ ] **Practical Scenario**: Real-world application case study
 - [ ] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
 - [ ] **Controlled Model Output & Structured Data**: Forcing JSON and schema compliance
@@ -49,6 +49,8 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [002-gemini-chatbot-exercise.ipynb](002-gemini-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Free Gemini execution).
 - [003-claude-system-prompts.ipynb](003-claude-system-prompts.ipynb) — System Prompts & Dynamic Params (Course `002_system_prompt.ipynb`).
 - [003-gemini-system-prompts.ipynb](003-gemini-system-prompts.ipynb) — System Instructions Companion (Free Gemini execution).
+- [004-claude-temperature.ipynb](004-claude-temperature.ipynb) — Temperature & Sampling Randomness (Claude).
+- [004-gemini-temperature.ipynb](004-gemini-temperature.ipynb) — Temperature Parameter Companion (Free Gemini execution).
 - [module-01-dialogue-review.md](module-01-dialogue-review.md) — 💬 Coursera Interactive Dialogue Assessment & Cheat-Sheet.
 
 ---
@@ -295,6 +297,49 @@ When asked to write a function checking for duplicate characters without a syste
         return len(s) != len(set(s))
     ```
   * **Result**: **93% token reduction** while preserving 100% functionality and correctness.
+
+---
+
+## 🌡️ Temperature: Controlling Output Randomness
+
+Temperature is a float value between `0.0` and `1.0` that governs the **probability distribution** when sampling next tokens.
+
+```text
+Input Tokens: "What" ──► "do" ──► "you" ──► "think"
+                                                │
+                 ┌──────────────────────────────┴──────────────────────────────┐
+                 ▼                                                             ▼
+       Low Temperature (near 0.0)                                    High Temperature (near 1.0)
+• Sharpens probability toward top token                        • Flattens distribution across tokens
+• "about" probability approaches 100%                          • Rare tokens (e.g. "when", "we") get selected
+• Deterministic, reproducible, consistent                      • Creative, diverse, unexpected output
+```
+
+### 📊 Temperature Ranges & Recommended Use Cases
+
+| Temperature Range | Behavior | Optimal Real-World Use Cases |
+| :--- | :--- | :--- |
+| **Low (`0.0 - 0.3`)** | **Deterministic & Factual**<br>• Greedily picks highest-probability token | • Data extraction & schema parsing<br>• Code generation & debugging<br>• Content moderation & classification |
+| **Medium (`0.4 - 0.7`)** | **Balanced & Coherent**<br>• Blends creativity with logical structure | • Document summarization<br>• Educational tutoring & Q&A<br>• Constrained writing & problem solving |
+| **High (`0.8 - 1.0`)** | **Creative & Exploratory**<br>• Greater variance across runs | • Brainstorming novel concepts<br>• Marketing copy & ad headlines<br>• Creative writing & joke generation |
+
+### 🛠️ Updating the `chat()` Function for Temperature
+
+```python
+def chat(messages, system=None, temperature=1.0):
+    params = {
+        "model": model,
+        "max_tokens": 1000,
+        "messages": messages,
+        "temperature": temperature,
+    }
+
+    if system:
+        params["system"] = system
+
+    message = client.messages.create(**params)
+    return message.content[0].text
+```
 
 ---
 
