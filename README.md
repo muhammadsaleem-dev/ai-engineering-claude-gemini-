@@ -13,9 +13,9 @@ This project implements the full curriculum from Anthropic's **"Building with th
 | Module | Topic | Status | Exercises & Notes |
 | :--- | :--- | :---: | :--- |
 | **01** | **Getting Started with Claude**<br>• Part 1: API Fundamentals<br>• Part 2: Controlling Output | 🔄 **In Progress**<br>(Part 1: ✅ Done<br>Part 2: 🏃 Active) | **Part 1**: Requests, Multi-turn, Chatbot, Dialogue<br>**Part 2**: System Prompts, Temperature, Streaming, Structured Data |
-| **02** | **Prompt Engineering & Evaluation** | ⏳ Upcoming | System Prompts, Few-shot, Chain-of-Thought, Evals |
+| **02** | **Prompt Engineering & Evaluation** | ⏳ Upcoming | 🌱 **Spec-Kit (SDD)**: Benchmark & eval specs, Few-shot, Chains |
 | **03** | **Tools and Multimodal** | ⏳ Upcoming | Function Calling, Tool Use, Vision, Document Analysis |
-| **04** | **Model Context Protocol (MCP)** | ⏳ Upcoming | MCP Client & Server Integration, Resource Protocols |
+| **04** | **Model Context Protocol (MCP)** | ⏳ Upcoming | 🌱 **Spec-Kit (SDD)**: MCP Server & Tool Contracts, FastMCP |
 | **05** | **Retrieval-Augmented Generation (RAG)** | ⏳ Upcoming | Vector Embeddings, Chunking Strategies, Semantic Search |
 | **06** | **Claude Code & Computer Use** | ⏳ Upcoming | Desktop Automation, Agentic OS Controls |
 | **07** | **Agentic Workflows** | ⏳ Upcoming | Autonomous Agents, Routing, Chaining, Evaluator-Optimizer |
