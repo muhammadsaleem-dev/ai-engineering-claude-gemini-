@@ -44,6 +44,8 @@ This project implements the full curriculum from Anthropic's **"Building with th
 │   ├── 004-gemini-temperature.ipynb        # Temperature Parameter Companion (Free Gemini execution)
 │   ├── 005-claude-streaming.ipynb          # Response Streaming & Event Handling (Claude messages.stream)
 │   ├── 005-gemini-streaming.ipynb          # Response Streaming Companion (Google GenAI streaming & chats)
+│   ├── 006-claude-controlling-output.ipynb  # Structured JSON Output via Assistant Prefill & Stop Sequences
+│   ├── 006-gemini-controlling-output.ipynb  # Native JSON Mode & Pydantic Schema Enforcement (Gemini)
 │   ├── module-01-dialogue-review.md        # Coursera Dialogue Assessment Q&A & Cheat-sheet
 │   └── README.md                           # Comprehensive Module 1 revision guide
 │

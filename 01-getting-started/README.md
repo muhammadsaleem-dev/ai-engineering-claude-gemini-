@@ -36,7 +36,7 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [x] **Practical Scenario**: Real-world application case study (Customer Support Specialist AI)
 - [x] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
 - [x] **Controlled Model Output**: `max_tokens`, `stop_sequences`, `top_k`, and `top_p` parameters
-- [ ] **Structured Data & JSON Mode**: Forcing schema compliance and predictable outputs
+- [x] **Structured Data & JSON Mode**: Forcing schema compliance and predictable outputs
 - [ ] **Structured Data Exercise**: Parsing, validation, and real-world extraction
 - [ ] **Optimizing Output & Dialogue**: Graded assignment and second interactive dialogue
 - [ ] **Module 01 Capstone**: 🌐 Deploy GitHub Pages live documentation website
@@ -54,6 +54,8 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [004-gemini-temperature.ipynb](004-gemini-temperature.ipynb) — Temperature Parameter Companion (Free Gemini execution).
 - [005-claude-streaming.ipynb](005-claude-streaming.ipynb) — Response Streaming & Event Handling (Claude `messages.stream`).
 - [005-gemini-streaming.ipynb](005-gemini-streaming.ipynb) — Response Streaming Companion (Google GenAI `generate_content_stream` & `chats`).
+- [006-claude-controlling-output.ipynb](006-claude-controlling-output.ipynb) — Structured JSON Output via Assistant Prefill & Stop Sequences (Claude).
+- [006-gemini-controlling-output.ipynb](006-gemini-controlling-output.ipynb) — Native JSON Mode & Pydantic Schema Enforcement (Gemini).
 - [module-01-dialogue-review.md](module-01-dialogue-review.md) — 💬 Coursera Interactive Dialogue Assessment & Cheat-Sheet.
 
 ---
@@ -651,6 +653,131 @@ response = client.models.generate_content(
 
 print(response.text)
 ```
+
+---
+
+## 🧱 Generating Structured Data: Prefilling & Schema Enforcement
+
+In production backends and UI tools (e.g. an **AWS EventBridge Rule Generator**), applications require raw, parseable data (valid JSON, code, or bulleted lists) with **zero conversational filler**.
+
+### ⚠️ The Problem: Conversational Pollution & Markdown Backticks
+By default, language models wrap structured output in markdown code fences and add friendly conversational text:
+
+```markdown
+# EventBridge Rule
+```json
+{
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"]
+}
+```
+This rule captures EC2 instance state changes when instances start running or stop.
+```
+
+If your Python backend attempts `json.loads(response.text)`, it **crashes immediately** with `json.decoder.JSONDecodeError`.
+
+---
+
+### 💡 The Anthropic Solution: Assistant Turn Prefilling + Stop Sequences
+
+Claude allows developers to **end the `messages` list with an `assistant` turn**. When Claude receives an unfinished assistant message, it treats that text as already spoken and continues generating directly from that token.
+
+```text
+ ┌─────────────────────────────────────────────────────────────┐
+ │ User Message                                                │
+ │ "Generate an EventBridge rule as JSON"                      │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │ Assistant Message (PREFILLED)                               │
+ │ "```json"                                                   │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │  Claude thinks: "I've already started the code block!
+                                │  I can't write conversational intro text now."
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │ Claude Generates JSON Tokens                                │
+ │ \n{\n  "source": ["aws.ec2"]\n}\n                           │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │  Claude reaches the end and wants to close the block:
+                                │  It emits "```"
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │ Stop Sequence Triggered: ["```"]                            │
+ │ • Halts generation IMMEDIATELY                              │
+ │ • Completely cuts off closing explanations & chatter        │
+ └─────────────────────────────────────────────────────────────┘
+```
+
+#### Production Python Pattern (Claude):
+```python
+messages = []
+add_user_message(messages, "Generate a very short event bridge rule as json")
+add_assistant_message(messages, "```json")
+
+# Claude stops the exact moment it closes the markdown block
+clean_json_str = chat(messages, stop_sequences=["```"])
+
+# Parses cleanly into Python dictionary without any regex!
+import json
+data = json.loads(clean_json_str.strip())
+```
+
+---
+
+### ♊ The Gemini Solution: Logit-Constrained Native JSON & Pydantic
+
+In Google Gemini, ending requests with an assistant/model turn is forbidden (`ClientError: 400 Requests ending with a model turn are not supported`).
+Instead, Gemini solves this natively at the token generation level:
+
+1. **Native JSON Mode (`response_mime_type="application/json"`)**:
+   Forces the model's logits to output only syntactically valid JSON. No markdown backticks are ever produced.
+2. **Pydantic Schema Enforcement (`response_schema=BaseModel`)**:
+   Guarantees that the returned JSON strictly adheres to your required keys, arrays, and types.
+
+#### Production Python Pattern (Gemini):
+```python
+from google import genai
+from google.genai import types
+from pydantic import BaseModel, Field
+
+client = genai.Client()
+
+class EventBridgeRule(BaseModel):
+    source: list[str] = Field(description="AWS source service")
+    detail_type: list[str] = Field(description="Event detail type")
+    state: list[str] = Field(description="State filters")
+
+config = types.GenerateContentConfig(
+    response_mime_type="application/json",
+    response_schema=EventBridgeRule,
+    temperature=0.0
+)
+
+response = client.models.generate_content(
+    model="gemini-3.5-flash-lite",
+    contents="Generate an EventBridge rule to monitor EC2 instances state changes",
+    config=config
+)
+
+# 100% Guaranteed valid JSON matching EventBridgeRule schema
+import json
+rule = json.loads(response.text)
+```
+
+---
+
+### ⚖️ Architectural Comparison: Claude vs. Gemini
+
+| Feature | Anthropic Claude | Google Gemini (`google-genai`) |
+| :--- | :--- | :--- |
+| **Primary Technique** | Assistant Turn Prefill (`add_assistant_message("```json")`) | Native JSON Mode (`response_mime_type="application/json"`) |
+| **Stop Mechanism** | `stop_sequences=["```"]` | `stop_sequences` OR native schema termination |
+| **Intro Chatter Prevention** | Pre-fills the assistant turn before model begins | Logit-level token mask restricts non-JSON tokens |
+| **Outro Chatter Prevention** | Stop sequence triggers on closing delimiter | Schema boundary automatically closes JSON object |
+| **Type Validation** | Manual via Pydantic after response | Direct API enforcement via `response_schema` |
+
 
 
 
