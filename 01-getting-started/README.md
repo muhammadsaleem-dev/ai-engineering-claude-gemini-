@@ -35,7 +35,8 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [x] **Temperature**: Sampling control (deterministic 0.0 vs. creative 1.0)
 - [x] **Practical Scenario**: Real-world application case study (Customer Support Specialist AI)
 - [x] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
-- [ ] **Controlled Model Output & Structured Data**: Forcing JSON and schema compliance
+- [x] **Controlled Model Output**: `max_tokens`, `stop_sequences`, `top_k`, and `top_p` parameters
+- [ ] **Structured Data & JSON Mode**: Forcing schema compliance and predictable outputs
 - [ ] **Structured Data Exercise**: Parsing, validation, and real-world extraction
 - [ ] **Optimizing Output & Dialogue**: Graded assignment and second interactive dialogue
 - [ ] **Module 01 Capstone**: 🌐 Deploy GitHub Pages live documentation website
@@ -556,5 +557,100 @@ for chunk in response:
 # Conversation history is updated automatically
 print("\nHistory length:", len(chat.get_history()))
 ```
+
+---
+
+## 🎛️ Controlled Model Output: Parameters & Sampling Controls
+
+Beyond System Prompts and Temperature, LLM APIs provide several fine-grained parameters to constrain, shape, and terminate output generation with mathematical precision.
+
+### 📊 Parameter Comparison & Cheatsheet
+
+| Parameter | Type / Range | What It Controls | When to Use | Stop Reason When Triggered |
+| :--- | :--- | :--- | :--- | :--- |
+| **`max_tokens`** | Integer (e.g. `100`, `1000`) | Hard ceiling on output length in tokens | Strict cost budgets, preventing runaway loops, concise answers | `stop_reason == "max_tokens"` |
+| **`stop_sequences`** | List of Strings (e.g. `["\n\n"]`, `["###"]`) | Text pattern that immediately halts generation when emitted | Section delimiters, markdown blocks, stop before unwanted chatter | `stop_reason == "stop_sequence"` |
+| **`temperature`** | Float (`0.0` – `1.0`) | Sharpness of token probability distribution | `0.0` for deterministic/factual, `0.8+` for creative diversity | — |
+| **`top_k`** | Integer (e.g. `40`) | Restricts candidate tokens to the $k$ highest-probability tokens | Eliminates extreme long-tail low-probability nonsense tokens | — |
+| **`top_p`** | Float (`0.0` – `1.0`, e.g. `0.9`) | **Nucleus Sampling**: Cuts off tokens once cumulative probability reaches $p$ | Adapts dynamically: tighter pool when confident, wider pool when unsure | — |
+
+---
+
+### 🔍 Deep Dive: How the Sampling Filters Work Together
+
+```text
+Full Vocabulary (~100,000+ Tokens)
+        │
+        ▼
+[ Step 1: Top-K Filter (e.g. top_k = 40) ]
+        │  Discards all tokens outside the top 40 candidates.
+        ▼
+[ Step 2: Top-P / Nucleus Filter (e.g. top_p = 0.90) ]
+        │  Sorts remaining tokens by probability and keeps only the smallest set
+        │  whose cumulative sum reaches 90%.
+        ▼
+[ Step 3: Temperature Scaling (e.g. temperature = 0.3) ]
+        │  Divides log probabilities by temperature to sharpen (low) or flatten (high)
+        │  the final selection odds.
+        ▼
+[ Step 4: Token Picked & Checked Against Stop Sequences ]
+        │  If token completes any string in `stop_sequences` (e.g. "###"),
+        ▼  generation terminates immediately with `stop_reason="stop_sequence"`.
+```
+
+---
+
+### 💻 Code Implementations: Combining Parameters for Fine-Grained Control
+
+#### 1. Anthropic Claude Implementation
+```python
+import anthropic
+
+client = anthropic.Anthropic()
+
+# Combine parameters for deterministic, bounded product description
+message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=500,
+    temperature=0.3,
+    top_p=0.9,
+    top_k=40,
+    stop_sequences=["###", "\n\n---"],
+    messages=[
+        {"role": "user", "content": "Generate a concise product description for waterproof running shoes."}
+    ],
+)
+
+print(message.content[0].text)
+print("Stop Reason:", message.stop_reason)      # e.g. "end_turn" or "stop_sequence"
+print("Tokens Used:", message.usage.output_tokens)
+```
+
+#### 2. Google Gemini Companion (`google-genai`)
+In the Google GenAI SDK, sampling parameters and stop sequences are configured cleanly through `types.GenerateContentConfig`:
+
+```python
+from google import genai
+from google.genai import types
+
+client = genai.Client()
+
+config = types.GenerateContentConfig(
+    max_output_tokens=500,
+    temperature=0.3,
+    top_p=0.9,
+    top_k=40,
+    stop_sequences=["###", "\n\n---"],
+)
+
+response = client.models.generate_content(
+    model="gemini-3.5-flash-lite",
+    contents="Generate a concise product description for waterproof running shoes.",
+    config=config,
+)
+
+print(response.text)
+```
+
 
 
