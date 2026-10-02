@@ -31,7 +31,7 @@ This module covers foundational API connectivity, request lifecycles, and core p
 
 ### Part 2: Controlling Claude's Output (🔄 Current / In Progress)
 - [x] **System Prompts**: Guiding role, persona, and behavioral boundaries
-- [ ] **Exercise on Writing a System Prompt**: Practical prompt tuning
+- [x] **Exercise on Writing a System Prompt**: Practical prompt tuning (Concise Python Engineer)
 - [ ] **Temperature**: Sampling control (deterministic 0.0 vs. creative 1.0)
 - [ ] **Practical Scenario**: Real-world application case study
 - [ ] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
@@ -281,6 +281,20 @@ def chat(messages, system=None):
     message = client.messages.create(**params)
     return message.content[0].text
 ```
+
+### 💻 Practical Exercise: Enforcing Concise Code Generation
+When asked to write a function checking for duplicate characters without a system prompt, models tend to be verbose—providing lengthy background explanations, time complexity breakdowns, and multiple alternatives.
+
+* **Target Prompt**: `"Write a Python function that checks a string for duplicate characters."`
+* **System Prompt Applied**: `"You are a Python engineer who writes very concise code"`
+* **Output Comparison**:
+  * *Default*: ~1,300+ characters with docstrings, explanations, and edge-case caveats.
+  * *With System Prompt*: Under 90 characters:
+    ```python
+    def has_duplicates(s: str) -> bool:
+        return len(s) != len(set(s))
+    ```
+  * **Result**: **93% token reduction** while preserving 100% functionality and correctness.
 
 ---
 
