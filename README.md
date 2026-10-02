@@ -12,8 +12,8 @@ This project implements the full curriculum from Anthropic's **"Building with th
 
 | Module | Topic | Status | Exercises & Notes |
 | :--- | :--- | :---: | :--- |
-| **01** | **Getting Started with LLM APIs** | ✅ **Completed** | 4 Notebooks, Lifecycle Pipeline, Chatbot Loop, Dialogue Assessment |
-| **02** | **Prompt Engineering & Evals** | 🔄 **Next Up** | System Prompts, Structured Output, Prompt Chaining, Evaluations |
+| **01** | **Getting Started with Claude**<br>• Part 1: API Fundamentals<br>• Part 2: Controlling Output | 🔄 **In Progress**<br>(Part 1: ✅ Done<br>Part 2: 🏃 Active) | **Part 1**: Requests, Multi-turn, Chatbot, Dialogue<br>**Part 2**: System Prompts, Temperature, Streaming, Structured Data |
+| **02** | **Prompt Engineering & Evaluation** | ⏳ Upcoming | System Prompts, Few-shot, Chain-of-Thought, Evals |
 | **03** | **Tools and Multimodal** | ⏳ Upcoming | Function Calling, Tool Use, Vision, Document Analysis |
 | **04** | **Model Context Protocol (MCP)** | ⏳ Upcoming | MCP Client & Server Integration, Resource Protocols |
 | **05** | **Retrieval-Augmented Generation (RAG)** | ⏳ Upcoming | Vector Embeddings, Chunking Strategies, Semantic Search |

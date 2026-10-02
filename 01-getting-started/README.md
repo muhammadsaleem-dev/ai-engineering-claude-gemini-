@@ -19,16 +19,24 @@ This module covers foundational API connectivity, request lifecycles, and core p
 
 ---
 
-## 📚 Core Topics & Lessons
-1. **API Keys & Authentication**: Setting up `.env` secrets and client initialization.
-2. **Making a Request**: Sending prompts and receiving message responses.
-3. **Core Parameters**:
-   - `model`: Choosing model variants (Opus vs. Sonnet vs. Haiku).
-   - `max_tokens` (Claude - Mandatory) / `max_output_tokens` (Gemini - Optional).
-   - `temperature`: Deterministic (0.0) vs. creative (1.0).
-4. **Multi-turn Chat**: Preserving conversation history in message arrays.
-5. **Interactive Chatbot**: Building continuous conversation loops in Jupyter notebooks.
-6. **Streaming**: Consuming responses in real time using token streams.
+## 📚 Module Syllabus: Getting Started with Claude
+
+### Part 1: API Fundamentals and First Steps (✅ Completed)
+- [x] **Overview of Claude Models**: Model tiers (Opus, Sonnet, Haiku) & decision guide
+- [x] **Working with the API**: Authentication, 7-stage request lifecycle, token economics
+- [x] **Making a Request**: Initializing client, sending prompt, mandatory `max_tokens`
+- [x] **Multi-Turn Conversations**: Stateless API nature, maintaining history, alternating roles
+- [x] **Build a Simple Chatbot**: Continuous conversation loop in Jupyter, input handling
+- [x] **Assessment & Dialogue**: Graded assignment & interactive tutor dialogue
+
+### Part 2: Controlling Claude's Output (🔄 Current / In Progress)
+- [ ] **System Prompts & Exercise**: Guiding role, persona, and behavioral boundaries
+- [ ] **Temperature**: Sampling control (deterministic 0.0 vs. creative 1.0)
+- [ ] **Practical Scenario**: Real-world application case study
+- [ ] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
+- [ ] **Controlled Model Output & Structured Data**: Forcing JSON and schema compliance
+- [ ] **Structured Data Exercise**: Parsing, validation, and real-world extraction
+- [ ] **Optimizing Output & Dialogue**: Graded assignment and second interactive dialogue
 
 ---
 
