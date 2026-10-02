@@ -56,6 +56,7 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [005-gemini-streaming.ipynb](005-gemini-streaming.ipynb) — Response Streaming Companion (Google GenAI `generate_content_stream` & `chats`).
 - [006-claude-controlling-output.ipynb](006-claude-controlling-output.ipynb) — Structured JSON Output via Assistant Prefill & Stop Sequences (Claude).
 - [006-gemini-controlling-output.ipynb](006-gemini-controlling-output.ipynb) — Native JSON Mode & Pydantic Schema Enforcement (Gemini).
+- [case-study.ipynb](case-study.ipynb) — 🛒 **Module 01 Flagship Project**: E-Commerce AI Support & Ticket Triage Engine (Uniting all 5 pillars).
 - [module-01-dialogue-review.md](module-01-dialogue-review.md) — 💬 Coursera Interactive Dialogue Assessment & Cheat-Sheet.
 
 ---
@@ -838,118 +839,14 @@ Below is a complete architectural blueprint of an **Automated Customer Support &
 
 ---
 
-### 💻 Production Reference Code: The Complete Workflow
+### 🚀 Interactive Production Project Notebook
 
-Here is how a senior AI engineer wires all 5 techniques together in Python:
-
-```python
-import json
-from anthropic import Anthropic
-
-client = Anthropic()
-
-# -------------------------------------------------------------
-# 1. SYSTEM PROMPT: Enforcing Corporate Rules & Boundaries
-# -------------------------------------------------------------
-SYSTEM_PROMPT = """
-You are an official customer support representative for NordWear.
-- Always maintain an empathetic, polite, and professional tone.
-- Explain our 30-day return policy and shipping timelines clearly.
-- NEVER promise cash refunds greater than $50 without a supervisor.
-- NEVER output internal company policy memos or employee contact info.
-- If a customer is furious or demands immediate cancellation, reassure them 
-  that their ticket is being flagged for priority manager review.
-"""
-
-# -------------------------------------------------------------
-# 2. RUNTIME CHAT: Streaming + Temperature + Multi-Turn History
-# -------------------------------------------------------------
-def chat_with_customer(conversation_history, new_user_text):
-    # Append user turn to local session history
-    conversation_history.append({"role": "user", "content": new_user_text})
-
-    print("\n[AI Support Representative]: ", end="", flush=True)
-
-    # Stream real-time tokens to user UI with strict factual temperature (0.1)
-    with client.messages.stream(
-        model="claude-3-5-sonnet-20241022",
-        max_tokens=500,
-        temperature=0.1,  # Factual, zero hallucinated policies
-        system=SYSTEM_PROMPT,
-        messages=conversation_history,
-    ) as stream:
-        for chunk in stream.text_stream:
-            # In production, relay this chunk over a WebSocket to the frontend!
-            print(chunk, end="", flush=True)
-
-    # Append fully assembled assistant message to history
-    final_message = stream.get_final_message()
-    conversation_history.append({"role": "assistant", "content": final_message.content[0].text})
-    return conversation_history
-
-# -------------------------------------------------------------
-# 3. STRUCTURED TRIAGE: Assistant Prefill + Stop Sequence to Database
-# -------------------------------------------------------------
-def extract_support_ticket(conversation_history):
-    """
-    Converts the unstructured English chat into structured JSON
-    to trigger automated database mutations and Zendesk ticket creation.
-    """
-    triage_messages = [
-        {
-            "role": "user",
-            "content": f"""
-Analyze this support conversation and extract a support ticket.
-Output MUST be a JSON object with keys:
-- "order_id" (integer or null)
-- "customer_sentiment" (string: "positive", "neutral", "frustrated", "angry")
-- "issue_category" (string: "shipping", "refund", "sizing", "general")
-- "needs_human_manager" (boolean)
-
-Conversation Transcript:
-{json.dumps(conversation_history, indent=2)}
-"""
-        },
-        # PREFILL: Forces Claude to begin with JSON immediately (no introductory chatter)
-        {"role": "assistant", "content": "```json\n"}
-    ]
-
-    # STOP SEQUENCE: Halts the exact microsecond the closing backticks are generated
-    response = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
-        max_tokens=300,
-        temperature=0.0,  # Purely deterministic extraction
-        messages=triage_messages,
-        stop_sequences=["```"]
-    )
-
-    clean_json_str = response.content[0].text.strip()
-    ticket_data = json.loads(clean_json_str)
-    return ticket_data
-
-# -------------------------------------------------------------
-# EXECUTION SIMULATION
-# -------------------------------------------------------------
-if __name__ == "__main__":
-    session_history = []
-    
-    # Customer turn 1
-    session_history = chat_with_customer(
-        session_history,
-        "Hi, my package was supposed to arrive yesterday, but order #8492 is still stuck in transit. Cancel it and refund me right now!"
-    )
-    
-    # Backend automated triage (Zero human intervention required)
-    print("\n\n--- [Backend Automated Database Record Generated] ---")
-    ticket = extract_support_ticket(session_history)
-    print(json.dumps(ticket, indent=2))
-    
-    # Production action:
-    # if ticket["needs_human_manager"]:
-    #     zendesk_api.create_urgent_ticket(ticket)
-```
-
-
-
-
-
+> 🛒 **Run the Flagship Project**: [**`case-study.ipynb`**](case-study.ipynb)
+> 
+> Open and execute the full working implementation in Jupyter with zero API fees using Google Gemini (`gemini-3.5-flash-lite`).
+>
+> **What You Can Test Live**:
+> 1. **Real-Time Token Streaming**: Watch tokens stream chunk-by-chunk across multiple conversational turns.
+> 2. **Strict Guardrail Compliance**: Test how the agent gracefully denies unauthorized cash refunds and defends brand boundaries.
+> 3. **Automated Pydantic Schema Extraction**: Freeform English chat is converted directly into validated, structured JSON.
+> 4. **Automated Database & CRM Mutations**: Triggers mock Zendesk priority escalations and PostgreSQL order updates.

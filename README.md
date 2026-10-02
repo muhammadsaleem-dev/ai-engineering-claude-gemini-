@@ -10,15 +10,15 @@ This project implements the full curriculum from Anthropic's **"Building with th
 
 ## 📊 Course Progress Tracker
 
-| Module | Topic | Status | Exercises & Notes |
-| :--- | :--- | :---: | :--- |
-| **01** | **Getting Started with Claude**<br>• Part 1: API Fundamentals<br>• Part 2: Controlling Output | 🔄 **In Progress**<br>(Part 1: ✅ Done<br>Part 2: 🏃 Active) | **Part 1**: Requests, Multi-turn, Chatbot, Dialogue<br>**Part 2**: System Prompts, Temperature, Streaming, Structured Data |
-| **02** | **Prompt Engineering & Evaluation** | ⏳ Upcoming | 🌱 **Spec-Kit (SDD)**: Benchmark & eval specs, Few-shot, Chains |
-| **03** | **Tools and Multimodal** | ⏳ Upcoming | Function Calling, Tool Use, Vision, Document Analysis |
-| **04** | **Model Context Protocol (MCP)** | ⏳ Upcoming | 🌱 **Spec-Kit (SDD)**: MCP Server & Tool Contracts, FastMCP |
-| **05** | **Retrieval-Augmented Generation (RAG)** | ⏳ Upcoming | Vector Embeddings, Chunking Strategies, Semantic Search |
-| **06** | **Claude Code & Computer Use** | ⏳ Upcoming | Desktop Automation, Agentic OS Controls |
-| **07** | **Agentic Workflows** | ⏳ Upcoming | Autonomous Agents, Routing, Chaining, Evaluator-Optimizer |
+| Module | Topic | Status | Exercises & Notes | Production Case Study |
+| :--- | :--- | :---: | :--- | :--- |
+| **01** | **Getting Started with Claude**<br>• Part 1: API Fundamentals<br>• Part 2: Controlling Output | 🔄 **In Progress**<br>(Part 1: ✅ Done<br>Part 2: 🏃 Active) | **Part 1**: Requests, Multi-turn, Chatbot, Dialogue<br>**Part 2**: System Prompts, Temperature, Streaming, Structured Data | 🛒 **E-Commerce AI Support & Ticket Triage Engine**<br>([case-study.ipynb](01-getting-started/case-study.ipynb)) |
+| **02** | **Prompt Engineering & Evaluation** | ⏳ Upcoming | 🌱 **Spec-Kit (SDD)**: Benchmark & eval specs, Few-shot, Chains | 📊 **Automated LLM Evaluation Benchmark Engine** |
+| **03** | **Tools and Multimodal** | ⏳ Upcoming | Function Calling, Tool Use, Vision, Document Analysis | 🧾 **Multimodal Financial Invoice Auditor** |
+| **04** | **Model Context Protocol (MCP)** | ⏳ Upcoming | 🌱 **Spec-Kit (SDD)**: MCP Server & Tool Contracts, FastMCP | 🔌 **Enterprise Database MCP Integration** |
+| **05** | **Retrieval-Augmented Generation (RAG)** | ⏳ Upcoming | Vector Embeddings, Chunking Strategies, Semantic Search | 🔍 **Internal Enterprise Hybrid Search Knowledge Engine** |
+| **06** | **Claude Code & Computer Use** | ⏳ Upcoming | Desktop Automation, Agentic OS Controls | 🖥️ **Autonomous Desktop Operator** |
+| **07** | **Agentic Workflows** | ⏳ Upcoming | Autonomous Agents, Routing, Chaining, Evaluator-Optimizer | 🤖 **Autonomous Multi-Agent Research Team** |
 
 ---
 
@@ -46,6 +46,7 @@ This project implements the full curriculum from Anthropic's **"Building with th
 │   ├── 005-gemini-streaming.ipynb          # Response Streaming Companion (Google GenAI streaming & chats)
 │   ├── 006-claude-controlling-output.ipynb  # Structured JSON Output via Assistant Prefill & Stop Sequences
 │   ├── 006-gemini-controlling-output.ipynb  # Native JSON Mode & Pydantic Schema Enforcement (Gemini)
+│   ├── case-study.ipynb                    # 🛒 Module 01 Flagship: E-Commerce AI Support & Ticket Engine
 │   ├── module-01-dialogue-review.md        # Coursera Dialogue Assessment Q&A & Cheat-sheet
 │   └── README.md                           # Comprehensive Module 1 revision guide
 │
