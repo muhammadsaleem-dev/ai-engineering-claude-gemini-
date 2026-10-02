@@ -343,6 +343,80 @@ def chat(messages, system=None, temperature=1.0):
 
 ---
 
+## 🏢 Practical Scenario: The "Customer Support Specialist" AI
+
+> 💡 **Coursera Real-World Application**: [Practical Scenario — Customer Support Specialist AI](https://www.coursera.org/learn/building-with-the-claude-api/activity/practice-moment-static/17BC3/practical-scenario)
+>
+> In production applications, **System Prompting** and **Temperature** work together as two complimentary control axes:
+> 1. **System Prompt** = The **Rulebook & Guardrails** (Who the model is, what it knows, what it must NEVER reveal).
+> 2. **Temperature** = The **Creativity Dial** (How strictly it adheres to high-probability factual tokens vs. exploring novel token paths).
+
+```text
+                                  ┌─────────────────────────────┐
+                                  │       Incoming Query        │
+                                  └──────────────┬──────────────┘
+                                                 │
+                                                 ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│ 1. SYSTEM PROMPT (Fixed Persona & Corporate Boundaries)                                      │
+│ "You are a helpful, empathetic customer support agent for a clothing brand. Always         │
+│  prioritize solving the customer's issue. Never provide internal company policy documents." │
+└──────────────────────────────────────────────┬──────────────────────────────────────────────┘
+                                               │
+                                               ▼
+                              ┌──────────────────────────────────┐
+                              │  Query Routing & Task Selection  │
+                              └───────┬──────────────────┬───────┘
+                                      │                  │
+                Factual Inquiries     │                  │  Creative Tasks
+        (Order status, return policy) │                  │  (Outfit styling, recommendations)
+                                      ▼                  ▼
+                     ┌──────────────────┐      ┌──────────────────┐
+                     │ Temperature: 0.1 │      │ Temperature: 0.8 │
+                     └────────┬─────────┘      └────────┬─────────┘
+                              │                         │
+                              ▼                         ▼
+                     [ Precise & Factual ]     [ Varied & Expressive ]
+                     • Zero hallucinations     • Diverse fashion pairings
+                     • Predictable citations   • Engaging recommendations
+```
+
+### 1. Role Assignment via System Prompting
+* **Prompt**: `"You are a helpful, empathetic customer support agent for a clothing brand. Always prioritize solving the customer's issue and maintain a polite, professional tone. Never provide internal company policy documents directly to the customer."`
+* **Production Value**:
+  * **Brand Alignment**: Prevents the assistant from sounding like a generic, ungrounded LLM.
+  * **Security & Boundary Enforcement**: Restricts disclosure of confidential internal procedures or confidential documents.
+  * **Clarifying Questions Pattern**: Encourages active dialogue (e.g., asking *"What is your order number?"* or *"What style are you looking for?"*) instead of generating unhelpful text dumps.
+
+### 2. Dynamic Temperature Routing Pattern
+A robust real-world backend routes queries to different temperature settings based on the user's intent:
+
+```python
+# Production Pattern: Dynamic Temperature Allocation
+def handle_customer_query(client, messages, intent="factual"):
+    system_prompt = (
+        "You are a helpful, empathetic customer support agent for a clothing brand. "
+        "Always prioritize solving the customer's issue and maintain a polite, professional tone. "
+        "Never provide internal company policy documents directly to the customer. "
+        "Ask clarifying questions when key information is missing."
+    )
+
+    # Route temperature based on task intent
+    temperature = 0.1 if intent == "factual" else 0.8
+
+    # Anthropic Messages API
+    response = client.messages.create(
+        model="claude-3-5-sonnet-20241022",
+        max_tokens=1000,
+        system=system_prompt,
+        temperature=temperature,
+        messages=messages,
+    )
+    return response.content[0].text
+```
+
+---
+
 ## 🔗 Supplemental Reading: Working with the API
 
 > 📖 **Course Link**: [Coursera — Working with the API](https://www.coursera.org/learn/building-with-the-claude-api/supplement/Fk551/working-with-the-api)
@@ -352,3 +426,4 @@ def chat(messages, system=None, temperature=1.0):
 > - **Model Processing Pipeline**: The 4-stage transformation from raw text $\rightarrow$ tokens $\rightarrow$ vector embeddings $\rightarrow$ contextual attention $\rightarrow$ next-token generation.
 > - **Stop Conditions**: Always inspect `response.stop_reason` (`end_turn` vs. `max_tokens`) to ensure responses weren't prematurely cut off.
 > - **Token Accounting**: Track `usage.input_tokens` and `usage.output_tokens` to monitor latency, cost, and rate limits.
+
