@@ -5187,3 +5187,265 @@ body[data-md-color-scheme="default"] .lms-answer-box {
   color: #14532d;
 }
 
+/* ==========================================================================
+   Modern Mobile Code Block & Jupyter Notebook UX System
+   ========================================================================== */
+
+/* --- Universal Code Block Polish (Mobile & Desktop) --- */
+.md-typeset pre > code {
+  font-family: var(--font-code), 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.82rem !important;
+  line-height: 1.6 !important;
+  letter-spacing: -0.01em;
+}
+
+/* Ensure copy button never overlaps the code text */
+.md-typeset .highlight pre {
+  padding-right: 46px !important;
+}
+
+/* --- Jupyter Notebooks (mkdocs-jupyter) Modern Mobile Optimization --- */
+@media screen and (max-width: 768px) {
+  /* 1. Full-Width Container: Eliminate wasted side margins */
+  .jupyter-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .jp-Notebook {
+    padding: 0 !important;
+  }
+
+  .jp-Cell {
+    margin: 0 0 16px 0 !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+  }
+
+  .jp-Cell-inputWrapper {
+    padding: 0 !important;
+  }
+
+  /* 2. Hide the 8px collapser strip that wastes horizontal space */
+  .jp-Collapser {
+    display: none !important;
+    width: 0 !important;
+    min-width: 0 !important;
+  }
+
+  /* 3. Stack Prompt and Code Vertically: Header + Code Body */
+  .jp-InputArea,
+  .jp-Cell-inputArea {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+  }
+
+  /* 4. Sleek Execution Badge Header */
+  .jp-InputPrompt,
+  .jp-InputArea-prompt {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    padding: 0 14px !important;
+    text-align: left !important;
+    font-family: var(--font-code), 'JetBrains Mono', monospace !important;
+    font-size: 0.70rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 5. Code Editor Expands to 100% Viewport Width */
+  .jp-CodeMirrorEditor,
+  .jp-InputArea-editor {
+    position: static !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .CodeMirror.cm-s-jupyter {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  /* 6. Precision Copy Button: Anchored firmly inside the 34px Header Bar */
+  .zeroclipboard-container {
+    position: absolute !important;
+    top: 5px !important;
+    right: 10px !important;
+    z-index: 25 !important;
+  }
+
+  .zeroclipboard-container clipboard-copy {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 24px !important;
+    padding: 0 8px !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-sizing: border-box !important;
+  }
+
+  .zeroclipboard-container clipboard-copy svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .zeroclipboard-container .notice {
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    color: #10b981 !important;
+    margin-right: 4px !important;
+    text-transform: none !important;
+  }
+
+  .zeroclipboard-container clipboard-copy:active {
+    transform: scale(0.92) !important;
+  }
+
+  /* 7. Code Text Styling: Optimal Density & Smooth Touch Scroll */
+  .highlight-ipynb pre {
+    font-family: var(--font-code), 'JetBrains Mono', monospace !important;
+    font-size: 0.74rem !important;
+    line-height: 1.55 !important;
+    padding: 12px 14px !important;
+    margin: 0 !important;
+    overflow-x: auto !important;
+    white-space: pre !important;
+    word-break: normal !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* 8. Stack Output Area Vertically */
+  .jp-OutputArea,
+  .jp-Cell-outputArea {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+  }
+
+  .jp-OutputPrompt,
+  .jp-OutputArea-prompt {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 26px !important;
+    padding: 0 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    text-align: left !important;
+    font-family: var(--font-code), 'JetBrains Mono', monospace !important;
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .jp-OutputArea-child {
+    width: 100% !important;
+    padding: 10px 14px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    font-size: 0.74rem !important;
+  }
+
+  /* Custom Slim Scrollbars for Mobile Touch */
+  .highlight-ipynb pre::-webkit-scrollbar,
+  .jp-OutputArea-child::-webkit-scrollbar,
+  .md-typeset pre > code::-webkit-scrollbar {
+    height: 3px !important;
+  }
+
+  .highlight-ipynb pre::-webkit-scrollbar-thumb,
+  .jp-OutputArea-child::-webkit-scrollbar-thumb,
+  .md-typeset pre > code::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.35) !important;
+    border-radius: 4px !important;
+  }
+}
+
+/* --- Theme-Specific Modern Code Block Polish --- */
+/* Slate Theme (Dark Mode) */
+body[data-md-color-scheme="slate"] .jp-Cell-inputArea {
+  background: rgba(13, 19, 33, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4) !important;
+}
+
+body[data-md-color-scheme="slate"] .jp-InputPrompt {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #818cf8 !important;
+}
+
+body[data-md-color-scheme="slate"] .zeroclipboard-container clipboard-copy {
+  color: #94a3b8 !important;
+}
+
+body[data-md-color-scheme="slate"] .zeroclipboard-container clipboard-copy:hover {
+  color: #818cf8 !important;
+}
+
+body[data-md-color-scheme="slate"] .jp-OutputArea {
+  background: rgba(6, 9, 15, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body[data-md-color-scheme="slate"] .jp-OutputPrompt {
+  background: rgba(255, 255, 255, 0.02) !important;
+  color: #34d399 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Default Theme (Light Mode) */
+body[data-md-color-scheme="default"] .jp-Cell-inputArea {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
+}
+
+body[data-md-color-scheme="default"] .jp-InputPrompt {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #4f46e5 !important;
+}
+
+body[data-md-color-scheme="default"] .zeroclipboard-container clipboard-copy {
+  color: #64748b !important;
+}
+
+body[data-md-color-scheme="default"] .zeroclipboard-container clipboard-copy:hover {
+  color: #4338ca !important;
+}
+
+body[data-md-color-scheme="default"] .jp-OutputArea {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+body[data-md-color-scheme="default"] .jp-OutputPrompt {
+  background: #f1f5f9 !important;
+  color: #059669 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+
