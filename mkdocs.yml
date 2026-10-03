@@ -1,0 +1,98 @@
+site_name: AI Engineering with Claude & Gemini
+site_description: Dual-implementation reference guide, interactive notebooks, and production case studies for Anthropic Claude and Google Gemini APIs.
+site_author: Muhammad Saleem
+site_url: https://muhammadsaleem-dev.github.io/ai-engineering-claude-gemini-/
+repo_url: https://github.com/muhammadsaleem-dev/ai-engineering-claude-gemini-
+repo_name: muhammadsaleem-dev/ai-engineering-claude-gemini-
+
+theme:
+  name: material
+  language: en
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Plus Jakarta Sans
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      include_source: true
+      ignore_h1_titles: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - attr_list
+  - md_in_html
+
+nav:
+  - "Overview": index.md
+  - "Module 01: Getting Started":
+    - "Architecture & Reference Guide": module-01/index.md
+    - "Flagship Case Study: E-Commerce Support": module-01/case-study.ipynb
+    - "Interactive Dialogue Review": module-01/dialogue-review.md
+    - "Anthropic Claude Notebooks":
+      - "001: Messages API (Single & Multi-Turn)": module-01/notebooks/001-claude-requests.ipynb
+      - "002: Interactive Chatbot Exercise": module-01/notebooks/002-claude-chatbot-exercise.ipynb
+      - "003: System Prompts & Dynamic Params": module-01/notebooks/003-claude-system-prompts.ipynb
+      - "004: Temperature & Sampling": module-01/notebooks/004-claude-temperature.ipynb
+      - "005: Response Streaming (SSE)": module-01/notebooks/005-claude-streaming.ipynb
+      - "006: Output Control & Prefilling": module-01/notebooks/006-claude-controlling-output.ipynb
+    - "Google Gemini Companion Notebooks":
+      - "001: Google GenAI Requests & Chats": module-01/notebooks/001-gemini-requests.ipynb
+      - "002: Interactive Chatbot Exercise": module-01/notebooks/002-gemini-chatbot-exercise.ipynb
+      - "003: System Instructions Companion": module-01/notebooks/003-gemini-system-prompts.ipynb
+      - "004: Temperature Parameter Companion": module-01/notebooks/004-gemini-temperature.ipynb
+      - "005: Streaming & AFC Companion": module-01/notebooks/005-gemini-streaming.ipynb
+      - "006: Native JSON & Pydantic Schema": module-01/notebooks/006-gemini-controlling-output.ipynb
+  - "Module 02: Prompt Engineering & Evals": module-02/index.md
+  - "Module 03: Tools and Multimodal": module-03/index.md
+  - "Module 04: Model Context Protocol (MCP)": module-04/index.md
+  - "Module 05: Retrieval-Augmented Generation": module-05/index.md
+  - "Module 06: Claude Code & Computer Use": module-06/index.md
+  - "Module 07: Agentic Workflows": module-07/index.md

@@ -44,20 +44,20 @@ This module covers foundational API connectivity, request lifecycles, and core p
 ---
 
 ## Practical Notebooks & Reference Materials
-- [001-claude-requests.ipynb](001-claude-requests.ipynb) — Anthropic Messages API (Single-turn & Multi-turn).
-- [001-gemini-requests.ipynb](001-gemini-requests.ipynb) — Google Gemini companion implementation (Free execution).
-- [002-claude-chatbot-exercise.ipynb](002-claude-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Course `001_requests_exercise.ipynb`).
-- [002-gemini-chatbot-exercise.ipynb](002-gemini-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Free Gemini execution).
-- [003-claude-system-prompts.ipynb](003-claude-system-prompts.ipynb) — System Prompts & Dynamic Params (Course `002_system_prompt.ipynb`).
-- [003-gemini-system-prompts.ipynb](003-gemini-system-prompts.ipynb) — System Instructions Companion (Free Gemini execution).
-- [004-claude-temperature.ipynb](004-claude-temperature.ipynb) — Temperature & Sampling Randomness (Claude).
-- [004-gemini-temperature.ipynb](004-gemini-temperature.ipynb) — Temperature Parameter Companion (Free Gemini execution).
-- [005-claude-streaming.ipynb](005-claude-streaming.ipynb) — Response Streaming & Event Handling (Claude `messages.stream`).
-- [005-gemini-streaming.ipynb](005-gemini-streaming.ipynb) — Response Streaming Companion (Google GenAI `generate_content_stream` & `chats`).
-- [006-claude-controlling-output.ipynb](006-claude-controlling-output.ipynb) — Structured JSON Output via Assistant Prefill & Stop Sequences (Claude).
-- [006-gemini-controlling-output.ipynb](006-gemini-controlling-output.ipynb) — Native JSON Mode & Pydantic Schema Enforcement (Gemini).
+- [001-claude-requests.ipynb](notebooks/001-claude-requests.ipynb) — Anthropic Messages API (Single-turn & Multi-turn).
+- [001-gemini-requests.ipynb](notebooks/001-gemini-requests.ipynb) — Google Gemini companion implementation (Free execution).
+- [002-claude-chatbot-exercise.ipynb](notebooks/002-claude-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Course `001_requests_exercise.ipynb`).
+- [002-gemini-chatbot-exercise.ipynb](notebooks/002-gemini-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Free Gemini execution).
+- [003-claude-system-prompts.ipynb](notebooks/003-claude-system-prompts.ipynb) — System Prompts & Dynamic Params (Course `002_system_prompt.ipynb`).
+- [003-gemini-system-prompts.ipynb](notebooks/003-gemini-system-prompts.ipynb) — System Instructions Companion (Free Gemini execution).
+- [004-claude-temperature.ipynb](notebooks/004-claude-temperature.ipynb) — Temperature & Sampling Randomness (Claude).
+- [004-gemini-temperature.ipynb](notebooks/004-gemini-temperature.ipynb) — Temperature Parameter Companion (Free Gemini execution).
+- [005-claude-streaming.ipynb](notebooks/005-claude-streaming.ipynb) — Response Streaming & Event Handling (Claude `messages.stream`).
+- [005-gemini-streaming.ipynb](notebooks/005-gemini-streaming.ipynb) — Response Streaming Companion (Google GenAI `generate_content_stream` & `chats`).
+- [006-claude-controlling-output.ipynb](notebooks/006-claude-controlling-output.ipynb) — Structured JSON Output via Assistant Prefill & Stop Sequences (Claude).
+- [006-gemini-controlling-output.ipynb](notebooks/006-gemini-controlling-output.ipynb) — Native JSON Mode & Pydantic Schema Enforcement (Gemini).
 - [case-study.ipynb](case-study.ipynb) — **Module 01 Flagship Project**: E-Commerce AI Support & Ticket Triage Engine (Uniting all 5 pillars).
-- [module-01-dialogue-review.md](module-01-dialogue-review.md) — Coursera Interactive Dialogue Assessment & Cheat-Sheet.
+- [module-01-dialogue-review.md](dialogue-review.md) — Coursera Interactive Dialogue Assessment & Cheat-Sheet.
 
 ---
 

@@ -8,32 +8,37 @@ This project implements the full curriculum from Anthropic's **"Building with th
 
 ---
 
-## 📊 Course Progress Tracker
+## Curriculum & Production Blueprints
 
-| Module | Topic | Status | Exercises & Notes | Production Case Study |
+| Module | Core Architecture | Status | Reference Notebooks | Flagship Production Blueprint |
 | :--- | :--- | :---: | :--- | :--- |
-| **01** | **Getting Started with Claude**<br>• Part 1: API Fundamentals<br>• Part 2: Controlling Output | 🔄 **In Progress**<br>(Part 1: ✅ Done<br>Part 2: 🏃 Active) | **Part 1**: Requests, Multi-turn, Chatbot, Dialogue<br>**Part 2**: System Prompts, Temperature, Streaming, Structured Data | 🛒 **E-Commerce AI Support & Ticket Triage Engine**<br>([case-study.ipynb](01-getting-started/case-study.ipynb)) |
-| **02** | **Prompt Engineering & Evaluation** | ⏳ Upcoming | 🌱 **Spec-Kit (SDD)**: Benchmark & eval specs, Few-shot, Chains | 📊 **Automated LLM Evaluation Benchmark Engine** |
-| **03** | **Tools and Multimodal** | ⏳ Upcoming | Function Calling, Tool Use, Vision, Document Analysis | 🧾 **Multimodal Financial Invoice Auditor** |
-| **04** | **Model Context Protocol (MCP)** | ⏳ Upcoming | 🌱 **Spec-Kit (SDD)**: MCP Server & Tool Contracts, FastMCP | 🔌 **Enterprise Database MCP Integration** |
-| **05** | **Retrieval-Augmented Generation (RAG)** | ⏳ Upcoming | Vector Embeddings, Chunking Strategies, Semantic Search | 🔍 **Internal Enterprise Hybrid Search Knowledge Engine** |
-| **06** | **Claude Code & Computer Use** | ⏳ Upcoming | Desktop Automation, Agentic OS Controls | 🖥️ **Autonomous Desktop Operator** |
-| **07** | **Agentic Workflows** | ⏳ Upcoming | Autonomous Agents, Routing, Chaining, Evaluator-Optimizer | 🤖 **Autonomous Multi-Agent Research Team** |
+| **01** | **Getting Started with LLM APIs**<br>• API Fundamentals & Lifecycles<br>• Controlled Output & Schemas | **Completed** | Requests, Multi-turn, Chatbot, System Prompts, Temperature, Streaming, Prefilling | **[E-Commerce AI Support & Ticket Triage Engine](01-getting-started/case-study.ipynb)** |
+| **02** | **Prompt Engineering & Evaluation** | Up Next | Spec-Kit (SDD), Benchmark Datasets, Few-shot Chains | **Automated LLM Evaluation Benchmark Engine** |
+| **03** | **Tools and Multimodal** | Planned | Function Calling, Tool Use Schemas, Vision, Document Analysis | **Multimodal Financial Invoice Auditor** |
+| **04** | **Model Context Protocol (MCP)** | Planned | Spec-Kit (SDD), FastMCP Servers, Tool Contracts | **Enterprise Database MCP Integration** |
+| **05** | **Retrieval-Augmented Generation (RAG)** | Planned | Vector Embeddings, Chunking Strategies, Semantic Search | **Internal Enterprise Hybrid Search Knowledge Engine** |
+| **06** | **Claude Code & Computer Use** | Planned | Desktop Automation, Agentic OS Controls | **Autonomous Desktop Operator** |
+| **07** | **Agentic Workflows** | Planned | Autonomous Agents, Routing, Chaining, Evaluator-Optimizer | **Autonomous Multi-Agent Research Team** |
 
 ---
 
-## 🌐 Live Documentation (GitHub Pages)
+## Live Documentation Portal
 
-> 🚀 **Module 01 Capstone Milestone**:
-> As soon as Module 01 Part 2 is completed, GitHub Pages will be activated to host this entire repository as an interactive, searchable handbook at:
-> **`https://muhammadsaleem-dev.github.io/ai-engineering-claude-gemini-/`**
+The full curriculum, architecture guides, and interactive Jupyter notebooks are published to GitHub Pages using **MkDocs Material** and **mkdocs-jupyter**:
+
+**[https://muhammadsaleem-dev.github.io/ai-engineering-claude-gemini-/](https://muhammadsaleem-dev.github.io/ai-engineering-claude-gemini-/)**
+
+- **Instant Search**: Search through all prompt techniques, parameter tables, and API patterns.
+- **Rendered Notebooks**: Inspect Python code cells and model outputs directly in your browser.
+- **Dark / Light Modes**: Tailored theme with syntax highlighting and collapsible callouts.
+- **Continuous Deployment**: Automated via GitHub Actions on every push to `main`.
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```text
-├── 01-getting-started/                     # 🏃 ACTIVE: API fundamentals & Controlling Output
+├── 01-getting-started/                     # Module 01: API fundamentals & Controlling Output
 │   ├── 001-claude-requests.ipynb           # Anthropic Messages API (Single-turn & Multi-turn)
 │   ├── 001-gemini-requests.ipynb           # Google Gemini API (Single-turn, Multi-turn & chats.create)
 │   ├── 002-claude-chatbot-exercise.ipynb   # Interactive Notebook Chatbot (Course exercise)
@@ -46,26 +51,26 @@ This project implements the full curriculum from Anthropic's **"Building with th
 │   ├── 005-gemini-streaming.ipynb          # Response Streaming Companion (Google GenAI streaming & chats)
 │   ├── 006-claude-controlling-output.ipynb  # Structured JSON Output via Assistant Prefill & Stop Sequences
 │   ├── 006-gemini-controlling-output.ipynb  # Native JSON Mode & Pydantic Schema Enforcement (Gemini)
-│   ├── case-study.ipynb                    # 🛒 Module 01 Flagship: E-Commerce AI Support & Ticket Engine
+│   ├── case-study.ipynb                    # Module 01 Flagship: E-Commerce AI Support & Ticket Engine
 │   ├── module-01-dialogue-review.md        # Coursera Dialogue Assessment Q&A & Cheat-sheet
 │   └── README.md                           # Comprehensive Module 1 revision guide
 │
-├── 02-prompt-engineering-evals/            # 🔄 NEXT UP: Prompt design & automated evaluation
+├── 02-prompt-engineering-evals/            # Module 02: Prompt design & automated evaluation (Spec-Kit)
 │   └── README.md                           # Module plan & roadmap
 │
-├── 03-tools-and-multimodal/                # Function calling, vision, documents
+├── 03-tools-and-multimodal/                # Module 03: Function calling, vision, documents
 │   └── README.md                           # Tool schemas, multimodal, caching
 │
-├── 04-model-context-protocol-mcp/          # Model Context Protocol (MCP) integrations
+├── 04-model-context-protocol-mcp/          # Module 04: Model Context Protocol (MCP) integrations
 │   └── README.md                           # MCP servers, clients, resources
 │
-├── 05-retrieval-augmented-generation-rag/  # RAG pipelines, embeddings, vector search
+├── 05-retrieval-augmented-generation-rag/  # Module 05: RAG pipelines, embeddings, vector search
 │   └── README.md                           # Ingestion, chunking, retrieval
 │
-├── 06-claude-code-computer-use/            # Claude Code CLI & Computer Use
+├── 06-claude-code-computer-use/            # Module 06: Claude Code CLI & Computer Use
 │   └── README.md                           # Desktop automation architecture
 │
-├── 07-agentic-workflows/                   # Multi-agent architectures & design patterns
+├── 07-agentic-workflows/                   # Module 07: Multi-agent architectures & design patterns
 │   └── README.md                           # Chaining, routing, orchestrator-workers
 │
 ├── .env.example                            # API key configuration template
@@ -76,7 +81,7 @@ This project implements the full curriculum from Anthropic's **"Building with th
 
 ---
 
-## ⚡ Quickstart Setup
+## Quickstart Setup
 
 ### 1. Clone the repository
 ```bash
