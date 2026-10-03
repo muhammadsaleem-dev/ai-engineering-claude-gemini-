@@ -8,12 +8,12 @@ This module covers foundational API connectivity, request lifecycles, and core p
 
 | Model | Intelligence Tier | Latency & Cost | Production Workload | Gemini Companion |
 | :--- | :--- | :--- | :--- | :--- |
-| **Claude Opus** | Flagship Reasoning | Moderate · Premium ($$$) | System architecture, deep analysis, complex multi-agent logic | **Gemini Pro** |
+| **Claude Opus** | Advanced Reasoning | Moderate · Premium ($$$) | System architecture, deep analysis, complex multi-agent logic | **Gemini Pro** |
 | **Claude Sonnet** | Balanced Intelligence (Default 90%) | Fast · Balanced ($$) | Daily software engineering, RAG pipelines, tool execution | **Gemini Flash** |
 | **Claude Haiku** | High Throughput | Sub-second · Ultra-low ($) | Autocomplete, classification, content moderation, streaming triage | **Gemini Flash-Lite** |
 
 ### Model Selection Framework
-1. **Default to Sonnet (or Gemini Flash)**: Start here for almost every project. It delivers near-flagship intelligence at a fraction of the cost and latency.
+1. **Default to Sonnet (or Gemini Flash)**: Start here for almost every project. It delivers high-level intelligence at a fraction of the cost and latency.
 2. **Step down to Haiku (or Flash-Lite)**: If you need ultra-low latency, real-time responses, or are processing high volumes on a budget.
 3. **Step up to Opus (or Gemini Pro)**: Only when Sonnet struggles with exceptionally complex logic, massive codebases, or complex multi-agent planning.
 
@@ -56,7 +56,7 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [005-gemini-streaming.ipynb](notebooks/005-gemini-streaming.ipynb) — Response Streaming Companion (Google GenAI `generate_content_stream` & `chats`).
 - [006-claude-controlling-output.ipynb](notebooks/006-claude-controlling-output.ipynb) — Structured JSON Output via Assistant Prefill & Stop Sequences (Claude).
 - [006-gemini-controlling-output.ipynb](notebooks/006-gemini-controlling-output.ipynb) — Native JSON Mode & Pydantic Schema Enforcement (Gemini).
-- [case-study.ipynb](case-study.ipynb) — **Module 01 Flagship Project**: E-Commerce AI Support & Ticket Triage Engine (Uniting all 5 pillars).
+- [case-study.ipynb](case-study.ipynb) — **Module 01 Capstone Project**: E-Commerce AI Support & Ticket Triage Engine (Uniting all 5 pillars).
 - [module-01-dialogue-review.md](dialogue-review.md) — Coursera Interactive Dialogue Assessment & Cheat-Sheet.
 
 ---
@@ -781,10 +781,10 @@ rule = json.loads(response.text)
 
 ---
 
-## Production Blueprint: Automated Support & Ticket Triage Engine
+## Complete Blueprint: Automated Support & Ticket Triage Engine
 
 > [!NOTE]
-> In production enterprise systems, **all 5 techniques you learned in Module 1 work together in a single unified architecture**.
+> In real-world applications, **all 5 techniques you learned in Module 1 work together in a single unified architecture**.
 > Below is a complete architectural blueprint of an **Automated Customer Support & Ticket Escalation Service** (as used in modern e-commerce systems).
 
 ---
@@ -839,9 +839,9 @@ rule = json.loads(response.text)
 
 ---
 
-### Interactive Production Project Notebook
+### Interactive Capstone Project Notebook
 
-> **Run the Flagship Project**: [**`case-study.ipynb`**](case-study.ipynb)
+> **Run the Capstone Project**: [**`case-study.ipynb`**](case-study.ipynb)
 > 
 > Open and execute the full working implementation in Jupyter with zero API fees using Google Gemini (`gemini-3.5-flash-lite`).
 >

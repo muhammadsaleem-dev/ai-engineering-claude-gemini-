@@ -1,8 +1,7 @@
 ---
 title: AI Engineering with Claude & Gemini
-description: Production-grade dual-API curriculum, interactive notebooks, and enterprise architectures for Anthropic Claude and Google Gemini.
+description: Hands-on dual-API curriculum and interactive notebooks for Anthropic Claude and Google Gemini.
 hide:
-  - navigation
   - toc
 ---
 
@@ -23,8 +22,8 @@ hide:
       <span>Get Started with Module 01</span>
       <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-    <a href="module-01/case-study.ipynb" class="btn-outline">
-      <span>Production Case Study</span>
+    <a href="module-01/case-study/" class="btn-outline">
+      <span>View Capstone</span>
     </a>
     <a href="https://github.com/muhammadsaleem-dev/ai-engineering-claude-gemini-" target="_blank" class="btn-outline">
       <span>GitHub Repository</span>
@@ -142,7 +141,7 @@ hide:
 <div class="section-header">
   <div class="section-tag">CURRICULUM ARCHITECTURE</div>
   <h2 class="section-title">Production Modules &amp; Blueprints</h2>
-  <p class="section-desc">Every module pairs Anthropic's flagship Claude API with an identical, zero-cost Google Gemini implementation and an enterprise capstone project.</p>
+  <p class="section-desc">Every module pairs Anthropic's Claude API with an identical, zero-cost Google Gemini implementation and an end-to-end capstone project.</p>
 </div>
 
 <div class="bento-container">
@@ -154,7 +153,7 @@ hide:
           <span class="status-indicator"></span>
           COMPLETED
         </span>
-        <span class="module-number">MODULE 01 FLAGSHIP</span>
+        <span class="module-number">MODULE 01</span>
       </div>
       
       <div class="bento-icon-well">
@@ -173,7 +172,7 @@ hide:
         </div>
         <div class="deliv-item">
           <span class="deliv-count">1</span>
-          <span class="deliv-label">Flagship E-Commerce Capstone</span>
+          <span class="deliv-label">E-Commerce Capstone Project</span>
         </div>
         <div class="deliv-item">
           <span class="deliv-count">1</span>
@@ -378,7 +377,7 @@ hide:
 <div class="parity-matrix">
   <div class="parity-card parity-claude">
     <span class="parity-badge claude-badge">Anthropic Claude</span>
-    <h3 class="parity-heading">Flagship Course Implementation</h3>
+    <h3 class="parity-heading">Claude API Implementation</h3>
     
     <div class="parity-spec">
       <div class="spec-item">
@@ -436,7 +435,7 @@ hide:
 <div class="section-header">
   <div class="section-tag">CURRICULUM SPECIFICATION</div>
   <h2 class="section-title">Milestone Roadmap &amp; Project Index</h2>
-  <p class="section-desc">Comprehensive status matrix across all 7 production engineering modules.</p>
+  <p class="section-desc">Status matrix across all 7 engineering modules.</p>
 </div>
 
 <div class="roadmap-table-wrap">
@@ -447,7 +446,7 @@ hide:
         <th style="width: 230px;">Core Engineering Domain</th>
         <th style="width: 130px;">Status</th>
         <th>Technical Implementations</th>
-        <th>Production Capstone Project</th>
+        <th>Capstone Project</th>
       </tr>
     </thead>
     <tbody>
@@ -456,7 +455,7 @@ hide:
         <td><strong>LLM API Architecture</strong><br><span class="table-sub">Statelessness &amp; Output Control</span></td>
         <td><span class="status-pill status-completed"><span class="status-indicator"></span>Completed</span></td>
         <td>Requests, Chatbot, System Prompts, Temperature, SSE Streaming, Prefill JSON</td>
-        <td><a href="module-01/case-study.ipynb" class="table-proj-link">E-Commerce Support &amp; Ticket Triage Engine</a></td>
+        <td><a href="module-01/case-study/" class="table-proj-link">E-Commerce Support &amp; Ticket Triage Engine</a></td>
       </tr>
       <tr>
         <td><span class="mod-pill">02</span></td>
@@ -474,17 +473,17 @@ hide:
       </tr>
       <tr>
         <td><span class="mod-pill">04</span></td>
-        <td><strong>Model Context Protocol</strong><br><span class="table-sub">Enterprise Tool Standards</span></td>
+        <td><strong>Model Context Protocol</strong><br><span class="table-sub">Standardized Tool Integration</span></td>
         <td><span class="status-pill status-planned"><span class="status-indicator"></span>Planned</span></td>
         <td>FastMCP Servers, JSON-RPC Protocol, Tool Contracts, SQLite Integration</td>
-        <td><span class="table-proj-pending">Enterprise Database MCP Integration</span></td>
+        <td><span class="table-proj-pending">Database MCP Integration</span></td>
       </tr>
       <tr>
         <td><span class="mod-pill">05</span></td>
         <td><strong>Hybrid RAG Pipelines</strong><br><span class="table-sub">Vector Search &amp; Reranking</span></td>
         <td><span class="status-pill status-planned"><span class="status-indicator"></span>Planned</span></td>
         <td>Semantic Chunking, Vector Embeddings, Hybrid Search, Citation Grounding</td>
-        <td><span class="table-proj-pending">Internal Enterprise Hybrid Search Knowledge Engine</span></td>
+        <td><span class="table-proj-pending">Hybrid Search Knowledge Engine</span></td>
       </tr>
       <tr>
         <td><span class="mod-pill">06</span></td>

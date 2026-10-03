@@ -9,31 +9,33 @@ theme:
   name: material
   language: en
   palette:
-    # Light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: custom
-      accent: indigo
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-    # Dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    # Palette toggle for dark mode (Default primary experience)
+    - scheme: slate
       primary: custom
       accent: indigo
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+    # Palette toggle for light mode
+    - scheme: default
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/brain
   font:
     text: Plus Jakarta Sans
     code: JetBrains Mono
   features:
     - navigation.instant
     - navigation.tracking
-    - navigation.sections
-    - navigation.expand
+    - navigation.path
+    - navigation.indexes
     - navigation.top
+    - toc.follow
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -41,6 +43,10 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/sim-console.js
+  - javascripts/scroll-progress.js
 
 plugins:
   - search
@@ -74,7 +80,8 @@ nav:
   - "Overview": index.md
   - "Module 01: Getting Started":
     - "Architecture & Reference Guide": module-01/index.md
-    - "Flagship Case Study: E-Commerce Support": module-01/case-study.ipynb
+    - "Module 01 Capstone": module-01/case-study.ipynb
+    - "Summary & Next Steps": module-01/next-steps.md
     - "Interactive Dialogue Review": module-01/dialogue-review.md
     - "Anthropic Claude Notebooks":
       - "001: Messages API (Single & Multi-Turn)": module-01/notebooks/001-claude-requests.ipynb
