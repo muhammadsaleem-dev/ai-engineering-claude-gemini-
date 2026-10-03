@@ -81,9 +81,32 @@ def setup_docs():
     for nb in sorted(m1_src.glob("00*.ipynb")):
         sync_file(nb, nb_dst / nb.name)
 
-    # 3. Modules 02 through 07
-    modules = [
-        ("02-prompt-engineering-evals", "module-02"),
+    # 3. Module 02: Prompt Engineering & Evals
+    m2_src = ROOT / "02-prompt-engineering-evals"
+    m2_dst = DOCS / "module-02"
+    m2_dst.mkdir(parents=True, exist_ok=True)
+
+    # Sync Syllabus & Sub-pages
+    sync_file(m2_src / "README.md", m2_dst / "index.md")
+    sync_file(m2_src / "01-eval-framework.md", m2_dst / "01-eval-framework.md")
+    sync_file(m2_src / "02-grading-strategies.md", m2_dst / "02-grading-strategies.md")
+    sync_file(m2_src / "03-composite-scoring-runner.md", m2_dst / "03-composite-scoring-runner.md")
+    sync_file(m2_src / "knowledge-checks.md", m2_dst / "knowledge-checks.md")
+
+    # Sync Dialogue Review
+    sync_file(m2_src / "module-02-dialogue-review.md", m2_dst / "dialogue-review.md")
+
+    # Sync dataset.json
+    sync_file(m2_src / "dataset.json", m2_dst / "dataset.json")
+
+    # Sync notebooks
+    m2_nb_dst = m2_dst / "notebooks"
+    m2_nb_dst.mkdir(parents=True, exist_ok=True)
+    for nb in sorted(m2_src.glob("00*.ipynb")):
+        sync_file(nb, m2_nb_dst / nb.name)
+
+    # 4. Modules 03 through 07
+    other_modules = [
         ("03-tools-and-multimodal", "module-03"),
         ("04-model-context-protocol-mcp", "module-04"),
         ("05-retrieval-augmented-generation-rag", "module-05"),
@@ -91,7 +114,7 @@ def setup_docs():
         ("07-agentic-workflows", "module-07"),
     ]
 
-    for src_dir_name, dst_dir_name in modules:
+    for src_dir_name, dst_dir_name in other_modules:
         s_dir = ROOT / src_dir_name
         d_dir = DOCS / dst_dir_name
         d_dir.mkdir(parents=True, exist_ok=True)

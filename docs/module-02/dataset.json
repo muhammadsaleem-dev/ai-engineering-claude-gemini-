@@ -1,0 +1,27 @@
+[
+  {
+    "task": "Create a JSON configuration for an AWS Lambda function that sets environment variables for database connection",
+    "format": "json",
+    "solution_criteria": "Must include runtime, memory size, timeout, and basic structure for AWS Lambda configuration with environment variables."
+  },
+  {
+    "task": "Write a Python function to extract the AWS region from an ARN (Amazon Resource Name) string",
+    "format": "python",
+    "solution_criteria": "Must parse standard AWS ARN format (arn:partition:service:region:account-id:resource) and return the region code as a string, handling malformed ARNs safely."
+  },
+  {
+    "task": "Design a regular expression to validate a valid AWS EC2 instance ID (format: i-[alphanumeric characters] of length 8 or 17 hex characters)",
+    "format": "regex",
+    "solution_criteria": "Must match instance IDs starting with 'i-' followed by either 8 or 17 hexadecimal characters with start and end anchors."
+  },
+  {
+    "task": "Write a Python function that uses boto3 to list all S3 buckets and returns their names as a list of strings",
+    "format": "python",
+    "solution_criteria": "Must import boto3, instantiate the s3 client, invoke list_buckets, and extract bucket names into a list."
+  },
+  {
+    "task": "Create a JSON IAM Policy document that grants ReadOnly access (s3:GetObject, s3:ListBucket) to a bucket named 'company-reports'",
+    "format": "json",
+    "solution_criteria": "Must be valid IAM policy with Version '2012-10-17', Statement array containing Effect Allow, proper Action array, and Resource targeting the bucket and its objects."
+  }
+]
