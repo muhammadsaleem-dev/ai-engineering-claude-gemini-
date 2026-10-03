@@ -11,6 +11,27 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 
+def sync_file(src: Path, dst: Path):
+    """Safely synchronizes a file between src and dst without overwriting newer work."""
+    if not src.exists() and not dst.exists():
+        return
+    if not dst.exists():
+        shutil.copy2(src, dst)
+        return
+    if not src.exists():
+        shutil.copy2(dst, src)
+        return
+    # If identical, no action needed
+    if src.read_bytes() == dst.read_bytes():
+        return
+    # If docs copy was edited more recently, back-propagate to source to prevent regression
+    if dst.stat().st_mtime > src.stat().st_mtime:
+        print(f"🛡️ Safeguard: Preserving newer docs edit: {dst.relative_to(ROOT)} -> {src.relative_to(ROOT)}")
+        shutil.copy2(dst, src)
+    else:
+        print(f"🔄 Updating docs from source: {src.relative_to(ROOT)} -> {dst.relative_to(ROOT)}")
+        shutil.copy2(src, dst)
+
 def setup_docs():
     DOCS.mkdir(parents=True, exist_ok=True)
     (DOCS / "stylesheets").mkdir(parents=True, exist_ok=True)
@@ -49,18 +70,16 @@ def setup_docs():
         (m1_dst / "index.md").write_text(m1_readme, encoding="utf-8")
 
     # Module 01 Dialogue Review -> docs/module-01/dialogue-review.md
-    if (m1_src / "module-01-dialogue-review.md").exists():
-        shutil.copy2(m1_src / "module-01-dialogue-review.md", m1_dst / "dialogue-review.md")
+    sync_file(m1_src / "module-01-dialogue-review.md", m1_dst / "dialogue-review.md")
 
     # Flagship Case Study Notebook -> docs/module-01/case-study.ipynb
-    if (m1_src / "case-study.ipynb").exists():
-        shutil.copy2(m1_src / "case-study.ipynb", m1_dst / "case-study.ipynb")
+    sync_file(m1_src / "case-study.ipynb", m1_dst / "case-study.ipynb")
 
     # All module-01 companion notebooks -> docs/module-01/notebooks/
     nb_dst = m1_dst / "notebooks"
     nb_dst.mkdir(parents=True, exist_ok=True)
     for nb in sorted(m1_src.glob("00*.ipynb")):
-        shutil.copy2(nb, nb_dst / nb.name)
+        sync_file(nb, nb_dst / nb.name)
 
     # 3. Modules 02 through 07
     modules = [

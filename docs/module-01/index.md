@@ -1,101 +1,198 @@
-# Module 01: Getting Started with LLM APIs
-
-This module covers foundational API connectivity, request lifecycles, and core parameter configuration.
+<div class="m01-hero">
+  <div class="m01-badge-pill">
+    <span class="arch-pulse-dot"></span>
+    MODULE 01 FOUNDATIONS &bull; DUAL API ARCHITECTURE
+  </div>
+  <h1 class="m01-hero-title">API Architecture &amp; Controlled Output</h1>
+  <p class="m01-hero-lead">
+    Master foundational API connectivity, stateless multi-turn conversation loops, system steering, dynamic temperature sampling, Server-Sent Events (SSE) token streaming, and guaranteed JSON schema enforcement with Anthropic Claude and Google Gemini.
+  </p>
+  <div class="m01-stats-row">
+    <span class="m01-stat-chip">⚡ Sub-Second TTFT</span>
+    <span class="m01-stat-chip">🛡️ Zero Memory Leak Security</span>
+    <span class="m01-stat-chip">🎯 100% Guaranteed JSON</span>
+    <span class="m01-stat-chip">💻 12 Companion Notebooks</span>
+    <span class="m01-stat-chip">🚀 End-to-End Capstone</span>
+  </div>
+</div>
 
 ---
 
 ## Model Selection & Architecture Guide
 
-| Model | Intelligence Tier | Latency & Cost | Production Workload | Gemini Companion |
-| :--- | :--- | :--- | :--- | :--- |
-| **Claude Opus** | Advanced Reasoning | Moderate · Premium ($$$) | System architecture, deep analysis, complex multi-agent logic | **Gemini Pro** |
-| **Claude Sonnet** | Balanced Intelligence (Default 90%) | Fast · Balanced ($$) | Daily software engineering, RAG pipelines, tool execution | **Gemini Flash** |
-| **Claude Haiku** | High Throughput | Sub-second · Ultra-low ($) | Autocomplete, classification, content moderation, streaming triage | **Gemini Flash-Lite** |
+Choosing the right model tier is the foundation of production AI engineering. Each request balances intelligence depth against latency and cost budgets.
 
-### Model Selection Framework
-1. **Default to Sonnet (or Gemini Flash)**: Start here for almost every project. It delivers high-level intelligence at a fraction of the cost and latency.
-2. **Step down to Haiku (or Flash-Lite)**: If you need ultra-low latency, real-time responses, or are processing high volumes on a budget.
-3. **Step up to Opus (or Gemini Pro)**: Only when Sonnet struggles with exceptionally complex logic, massive codebases, or complex multi-agent planning.
+<div class="model-card-grid">
+  <div class="model-tier-card featured-tier">
+    <span class="model-tier-badge badge-default">RECOMMENDED DEFAULT &bull; 90% OF WORKLOADS</span>
+    <h3 class="model-card-title">Claude 3.7 Sonnet</h3>
+    <div class="model-companion-tag">Gemini Companion: <strong>Gemini 2.5 Flash</strong></div>
+    <div class="model-metric-row">
+      <span>Intelligence Tier</span>
+      <span class="model-metric-val">High (Frontier)</span>
+    </div>
+    <div class="model-metric-row">
+      <span>Latency (TTFT)</span>
+      <span class="model-metric-val">~0.7s (Fast)</span>
+    </div>
+    <div class="model-metric-row">
+      <span>Cost Profile</span>
+      <span class="model-metric-val">Balanced ($$)</span>
+    </div>
+    <p class="model-workload-desc">
+      Your primary engine for daily software engineering, tool execution, multi-turn reasoning, and production RAG pipelines.
+    </p>
+  </div>
+
+  <div class="model-tier-card">
+    <span class="model-tier-badge badge-speed">HIGH-THROUGHPUT &bull; REAL-TIME</span>
+    <h3 class="model-card-title">Claude 3.5 Haiku</h3>
+    <div class="model-companion-tag">Gemini Companion: <strong>Gemini 2.5 Flash-Lite</strong></div>
+    <div class="model-metric-row">
+      <span>Intelligence Tier</span>
+      <span class="model-metric-val">Moderate</span>
+    </div>
+    <div class="model-metric-row">
+      <span>Latency (TTFT)</span>
+      <span class="model-metric-val">&lt; 0.4s (Ultra-fast)</span>
+    </div>
+    <div class="model-metric-row">
+      <span>Cost Profile</span>
+      <span class="model-metric-val">Ultra-Low ($)</span>
+    </div>
+    <p class="model-workload-desc">
+      Engineered for classification, autocomplete, ticket triage, high-concurrency streaming, and cost-sensitive background workers.
+    </p>
+  </div>
+
+  <div class="model-tier-card">
+    <span class="model-tier-badge badge-power">DEEP REASONING &bull; SYSTEM ARCHITECTURE</span>
+    <h3 class="model-card-title">Claude 3 Opus</h3>
+    <div class="model-companion-tag">Gemini Companion: <strong>Gemini 2.5 Pro</strong></div>
+    <div class="model-metric-row">
+      <span>Intelligence Tier</span>
+      <span class="model-metric-val">Maximum</span>
+    </div>
+    <div class="model-metric-row">
+      <span>Latency (TTFT)</span>
+      <span class="model-metric-val">~1.5s (Moderate)</span>
+    </div>
+    <div class="model-metric-row">
+      <span>Cost Profile</span>
+      <span class="model-metric-val">Premium ($$$)</span>
+    </div>
+    <p class="model-workload-desc">
+      Reserved for deep multi-agent planning, hard mathematical reasoning, massive codebase refactoring, and complex analysis.
+    </p>
+  </div>
+</div>
 
 ---
 
 ## Module Curriculum & Learning Objectives
 
-### Part 1: API Fundamentals and First Steps (Completed)
-- [x] **Overview of Claude Models**: Model tiers (Opus, Sonnet, Haiku) & decision guide
-- [x] **Working with the API**: Authentication, 7-stage request lifecycle, token economics
-- [x] **Making a Request**: Initializing client, sending prompt, mandatory `max_tokens`
-- [x] **Multi-Turn Conversations**: Stateless API nature, maintaining history, alternating roles
-- [x] **Build a Simple Chatbot**: Continuous conversation loop in Jupyter, input handling
-- [x] **Assessment & Dialogue**: Graded assignment & interactive tutor dialogue
+### Part 1: API Fundamentals and First Steps
+- [x] **Overview of Models**: Architecture tiers (Sonnet, Haiku, Opus) and selection trade-offs
+- [x] **Working with the API**: Authentication, secure backend boundaries, and token economics
+- [x] **Making Authenticated Requests**: Initializing client SDKs, prompt payloads, and `max_tokens` limits
+- [x] **Multi-Turn Conversations**: Stateless API nature, maintaining history arrays, and role alternation
+- [x] **Building an Interactive Chatbot**: Continuous conversation loop in Jupyter with empty-input guards
+- [x] **Assessment & Dialogue**: Graded evaluation and tutor dialogue review
 
-### Part 2: Controlling Claude's Output (Completed)
-- [x] **System Prompts**: Guiding role, persona, and behavioral boundaries
-- [x] **Exercise on Writing a System Prompt**: Practical prompt tuning (Concise Python Engineer)
-- [x] **Temperature**: Sampling control (deterministic 0.0 vs. creative 1.0)
-- [x] **Practical Scenario**: Real-world application case study (Customer Support Specialist AI)
-- [x] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
-- [x] **Controlled Model Output**: `max_tokens`, `stop_sequences`, `top_k`, and `top_p` parameters
-- [x] **Structured Data & JSON Mode**: Forcing schema compliance and predictable outputs
-- [x] **Structured Data Exercise**: Parsing, validation, and real-world extraction (AWS CLI Commands)
-- [x] **Optimizing Output & Dialogue**: Graded assignment & interactive dialogue (Passed 100% - 27 XP)
-- [x] **Module 01 Capstone**: Deploy live documentation portal website (MkDocs Material + Jupyter)
+### Part 2: Controlling Model Output
+- [x] **System Prompts**: Persona definition, brand boundaries, and legal guardrails
+- [x] **Prompt Steering Exercise**: Token compression and concise code generation
+- [x] **Temperature Tuning**: Sampling randomness (deterministic `0.0` vs. exploratory `1.0`)
+- [x] **Real-World Triage Scenario**: Customer support specialist with dynamic temperature routing
+- [x] **Response Streaming**: Sub-second TTFT via Server-Sent Events (SSE)
+- [x] **Controlled Sampling Boundaries**: `max_tokens`, `stop_sequences`, `top_k`, and `top_p`
+- [x] **Structured Output & JSON Mode**: Assistant prefilling (Claude) and Pydantic schemas (Gemini)
+- [x] **Structured Data Exercise**: Parsing, validation, and extraction (AWS CLI Commands)
+- [x] **Module 01 Capstone**: Customer Support & Ticket Triage Engine with automated actions
 
 ---
 
 ## Practical Notebooks & Reference Materials
-- [001-claude-requests.ipynb](notebooks/001-claude-requests.ipynb) — Anthropic Messages API (Single-turn & Multi-turn).
-- [001-gemini-requests.ipynb](notebooks/001-gemini-requests.ipynb) — Google Gemini companion implementation (Free execution).
-- [002-claude-chatbot-exercise.ipynb](notebooks/002-claude-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Course `001_requests_exercise.ipynb`).
-- [002-gemini-chatbot-exercise.ipynb](notebooks/002-gemini-chatbot-exercise.ipynb) — Interactive Notebook Chatbot (Free Gemini execution).
-- [003-claude-system-prompts.ipynb](notebooks/003-claude-system-prompts.ipynb) — System Prompts & Dynamic Params (Course `002_system_prompt.ipynb`).
-- [003-gemini-system-prompts.ipynb](notebooks/003-gemini-system-prompts.ipynb) — System Instructions Companion (Free Gemini execution).
-- [004-claude-temperature.ipynb](notebooks/004-claude-temperature.ipynb) — Temperature & Sampling Randomness (Claude).
-- [004-gemini-temperature.ipynb](notebooks/004-gemini-temperature.ipynb) — Temperature Parameter Companion (Free Gemini execution).
-- [005-claude-streaming.ipynb](notebooks/005-claude-streaming.ipynb) — Response Streaming & Event Handling (Claude `messages.stream`).
-- [005-gemini-streaming.ipynb](notebooks/005-gemini-streaming.ipynb) — Response Streaming Companion (Google GenAI `generate_content_stream` & `chats`).
-- [006-claude-controlling-output.ipynb](notebooks/006-claude-controlling-output.ipynb) — Structured JSON Output via Assistant Prefill & Stop Sequences (Claude).
-- [006-gemini-controlling-output.ipynb](notebooks/006-gemini-controlling-output.ipynb) — Native JSON Mode & Pydantic Schema Enforcement (Gemini).
-- [case-study.ipynb](case-study.ipynb) — **Module 01 Capstone Project**: E-Commerce AI Support & Ticket Triage Engine (Uniting all 5 pillars).
-- [module-01-dialogue-review.md](dialogue-review.md) — Coursera Interactive Dialogue Assessment & Cheat-Sheet.
+
+| Notebook | Focus | Platform & Cost |
+| :--- | :--- | :--- |
+| [001-claude-requests.ipynb](notebooks/001-claude-requests.ipynb) | Single-turn & multi-turn requests with `messages.create()` | Anthropic Claude API |
+| [001-gemini-requests.ipynb](notebooks/001-gemini-requests.ipynb) | Zero-cost companion implementation with `generate_content()` | Google Gemini Free Tier |
+| [002-claude-chatbot-exercise.ipynb](notebooks/002-claude-chatbot-exercise.ipynb) | Continuous conversational state loop with session history | Anthropic Claude API |
+| [002-gemini-chatbot-exercise.ipynb](notebooks/002-gemini-chatbot-exercise.ipynb) | Interactive notebook chatbot using `chats.create()` | Google Gemini Free Tier |
+| [003-claude-system-prompts.ipynb](notebooks/003-claude-system-prompts.ipynb) | System prompts, persona steering, and dynamic parameter packing | Anthropic Claude API |
+| [003-gemini-system-prompts.ipynb](notebooks/003-gemini-system-prompts.ipynb) | Native `system_instruction` configuration companion | Google Gemini Free Tier |
+| [004-claude-temperature.ipynb](notebooks/004-claude-temperature.ipynb) | Temperature scaling and nucleus sampling randomness | Anthropic Claude API |
+| [004-gemini-temperature.ipynb](notebooks/004-gemini-temperature.ipynb) | Temperature configuration and reproducibility companion | Google Gemini Free Tier |
+| [005-claude-streaming.ipynb](notebooks/005-claude-streaming.ipynb) | Server-Sent Events (SSE) token streaming via `messages.stream` | Anthropic Claude API |
+| [005-gemini-streaming.ipynb](notebooks/005-gemini-streaming.ipynb) | Streaming companion with `chat.send_message_stream` | Google Gemini Free Tier |
+| [006-claude-controlling-output.ipynb](notebooks/006-claude-controlling-output.ipynb) | Guaranteed JSON output via assistant prefilling & stop sequences | Anthropic Claude API |
+| [006-gemini-controlling-output.ipynb](notebooks/006-gemini-controlling-output.ipynb) | Native JSON Mode with Pydantic BaseModel schemas | Google Gemini Free Tier |
+| [case-study.ipynb](case-study.ipynb) | **Capstone Project**: E-Commerce AI Support & Ticket Triage Engine | Dual-Engine Capstone |
+| [module-01-dialogue-review.md](dialogue-review.md) | Interactive Dialogue Assessment & Cheat-Sheet | Study Reference Guide |
 
 ---
 
 ## The End-to-End API Request Lifecycle
 
-Understanding the end-to-end request lifecycle is essential for building robust AI architectures and debugging issues effectively:
+Understanding the end-to-end request lifecycle is essential for building robust AI architectures and diagnosing latency bottlenecks.
 
-```text
-[ 1. User Interface (Client) ]
-       │  User inputs text (e.g. "What is quantum computing?")
-       ▼
-[ 2. Application Backend (Python Server) ]  ◄── SECURE ZONE
-       │  • Attaches secret API Key (never exposed to browser)
-       │  • Assembles conversation history into `messages` array
-       │  • Sets parameters (`model`, `temperature`, `max_tokens`)
-       ▼
-[ 3. Anthropic API Endpoint ] (https://api.anthropic.com/v1/messages)
-       │  • Authenticates request via `x-api-key` header
-       │  • Routes payload to the model inference engine
-       ▼
-[ 4. Inside the Model Inference Engine ]
-       │  1. Tokenization: Splits text/subwords into numerical token IDs
-       │  2. Embedding: Maps tokens into high-dimensional vector representations
-       │  3. Contextualization: Adjusts embeddings via attention layers to resolve word meaning in context
-       │  4. Generation: Predicts next-token probability distribution sequentially
-       ▼
-[ 5. Stop Conditions (Generation Ends When) ]
-       │  • Natural Ending: Model generates an End-of-Sequence (EOS) token (`stop_reason: "end_turn"`)
-       │  • Token Limit: Generation hits user-defined `max_tokens` (`stop_reason: "max_tokens"`)
-       │  • Stop Sequence: Generation matches a custom stop phrase (`stop_reason: "stop_sequence"`)
-       ▼
-[ 6. Response Payload Returned ]
-       │  • Content: `[{"type": "text", "text": "..."}]`
-       │  • Usage: Token consumption (`input_tokens`, `output_tokens`)
-       │  • Stop Reason: Reason for termination
-       ▼
-[ 7. Client UI Displays Output to User ]
-```
+<div class="lifecycle-wrapper">
+  <div class="lifecycle-steps">
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">1</div>
+      <div>
+        <div class="step-body-title">Client UI (Web or Mobile)</div>
+        <div class="step-body-desc">User submits input prompt. No API secrets live on this device.</div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">2</div>
+      <div>
+        <div class="step-body-title">Application Backend Server (Secure Zone)</div>
+        <div class="step-body-desc">Injects secret API keys, retrieves user session history from Redis/PostgreSQL, binds system guardrails, and sets sampling parameters.</div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">3</div>
+      <div>
+        <div class="step-body-title">API Gateway &amp; Authentication</div>
+        <div class="step-body-desc">Anthropic or Google endpoint verifies API headers, applies rate limits, and routes the payload to GPU inference clusters.</div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">4</div>
+      <div>
+        <div class="step-body-title">Inference Engine (4-Stage Generation)</div>
+        <div class="step-body-desc">
+          <strong>Tokenization</strong> (text &rarr; subword IDs) &rarr;
+          <strong>Embeddings</strong> (high-dimensional vector mapping) &rarr;
+          <strong>Self-Attention Layers</strong> (context resolution) &rarr;
+          <strong>Sequential Token Generation</strong> (next-token probability sampling).
+        </div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">5</div>
+      <div>
+        <div class="step-body-title">Stop Condition Evaluation</div>
+        <div class="step-body-desc">Generation halts when encountering an End-of-Sequence token (<code>end_turn</code>), hitting <code>max_tokens</code> ceiling, or matching a custom <code>stop_sequence</code>.</div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">6</div>
+      <div>
+        <div class="step-body-title">Payload Delivery &amp; Real-Time UI Render</div>
+        <div class="step-body-desc">Tokens are flushed to the client over Server-Sent Events (SSE) or WebSockets with usage telemetry (input/output tokens).</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 
@@ -104,79 +201,77 @@ Understanding the end-to-end request lifecycle is essential for building robust 
 ### The Core Principle: LLM APIs Have Zero Memory
 Neither the Anthropic API (Claude) nor Google Gemini stores your past requests or generated outputs on their servers. **Every API call is 100% stateless and isolated.**
 
-If you ask:
-> Turn 1: *"Define quantum computing in one sentence."* $\rightarrow$ Model explains quantum computing.
-> Turn 2: *"Write another sentence."*
+<div class="compare-grid">
+  <div class="compare-card compare-bad">
+    <div class="compare-header">
+      <span>❌</span>
+      <span>Without History (Stateless Failure)</span>
+    </div>
+    <p><strong>Turn 1</strong>: <code>"Define quantum computing in one sentence."</code><br>
+    &rarr; <em>"Quantum computing uses qubits to perform calculations..."</em></p>
+    <p><strong>Turn 2</strong>: <code>"Write another sentence."</code><br>
+    &rarr; <em>"The blue whale is the largest animal on Earth."</em> (Total amnesia!)</p>
+  </div>
 
-Without conversation history, the model in Turn 2 sees only `"Write another sentence"`. It has no knowledge of Turn 1 and will generate an arbitrary, out-of-context sentence.
+  <div class="compare-card compare-good">
+    <div class="compare-header">
+      <span>✅</span>
+      <span>With Cumulative History (Contextual Continuity)</span>
+    </div>
+    <p><strong>Turn 1</strong>: <code>"Define quantum computing in one sentence."</code><br>
+    &rarr; <em>"Quantum computing uses qubits to perform calculations..."</em></p>
+    <p><strong>Turn 2</strong>: <code>[Turn 1 Q&amp;A + "Write another sentence."]</code><br>
+    &rarr; <em>"Unlike classical bits, qubits leverage superposition."</em> (Context preserved!)</p>
+  </div>
+</div>
 
-```text
-❌ Without History (Stateless Failure):
-Request 1: ["Define quantum computing in one sentence"] ──► Claude ──► "Quantum computing uses qubits..."
-Request 2: ["Write another sentence"]                  ──► Claude ──► "The blue whale is the largest animal."
+### Dual SDK Implementation Patterns
 
-✅ With Message History (Contextual Continuity):
-Request 1: [User: "Define quantum computing..."]        ──► Claude ──► Assistant: "Quantum computing uses qubits..."
-Request 2: [
-  User: "Define quantum computing...",
-  Assistant: "Quantum computing uses qubits...",
-  User: "Write another sentence"
-]                                                      ──► Claude ──► Assistant: "Unlike classical bits, qubits leverage superposition..."
-```
+=== "Anthropic Claude"
 
-### Core Architecture Principles for Multi-Turn Conversations
-1. **Maintain History in Your Code**: Keep a local list/array of all exchanged turns (`user` prompts and `assistant`/`model` responses) in your application state.
-2. **Re-Send Full History Every Turn**: Pass the entire cumulative conversation list with every subsequent request.
+    ```python
+    import anthropic
 
----
+    client = anthropic.Anthropic()
+    messages = []
 
-### Helper Function Patterns: Claude vs. Gemini
+    def add_user_message(messages, text):
+        messages.append({"role": "user", "content": text})
 
-| Feature | Anthropic Claude | Google Gemini |
-| :--- | :--- | :--- |
-| **Assistant Role Name** | `"assistant"` | `"model"` |
-| **Message Dictionary Format** | `{"role": "user", "content": text}` | `{"role": "user", "parts": [{"text": text}]}` |
-| **Token Limit Parameter** | `max_tokens=1000` *(Mandatory)* | `config={"max_output_tokens": 1000}` *(Optional)* |
-| **Extracting Output Text** | `response.content[0].text` | `response.text` |
-| **SDK Chat Abstraction** | Manual message array | Manual array OR `client.chats.create()` |
+    def add_assistant_message(messages, text):
+        messages.append({"role": "assistant", "content": text})
 
-#### 1. Claude Implementation Pattern
-```python
-def add_user_message(messages, text):
-    user_message = {"role": "user", "content": text}
-    messages.append(user_message)
+    def chat(messages):
+        response = client.messages.create(
+            model="claude-3-7-sonnet-20250219",
+            max_tokens=1000,
+            messages=messages,
+        )
+        return response.content[0].text
+    ```
 
-def add_assistant_message(messages, text):
-    assistant_message = {"role": "assistant", "content": text}
-    messages.append(assistant_message)
+=== "Google Gemini"
 
-def chat(messages):
-    message = client.messages.create(
-        model=model,
-        max_tokens=1000,
-        messages=messages,
-    )
-    return message.content[0].text
-```
+    ```python
+    from google import genai
 
-#### 2. Gemini Implementation Pattern
-```python
-def add_user_message(messages, text):
-    user_message = {"role": "user", "parts": [{"text": text}]}
-    messages.append(user_message)
+    client = genai.Client()
+    messages = []
 
-def add_model_message(messages, text):
-    model_message = {"role": "model", "parts": [{"text": text}]}
-    messages.append(model_message)
+    def add_user_message(messages, text):
+        messages.append({"role": "user", "parts": [{"text": text}]})
 
-def chat(messages):
-    response = client.models.generate_content(
-        model=model,
-        contents=messages,
-        config={"max_output_tokens": 1000},
-    )
-    return response.text
-```
+    def add_model_message(messages, text):
+        messages.append({"role": "model", "parts": [{"text": text}]})
+
+    def chat(messages):
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=messages,
+            config={"max_output_tokens": 1000},
+        )
+        return response.text
+    ```
 
 ---
 
@@ -185,41 +280,57 @@ def chat(messages):
 The course exercise demonstrates a continuous conversational loop directly inside a Jupyter notebook cell.
 
 ### The 6-Step Conversational State Loop
-```text
-┌────────────────────────────────────────────────────────┐
-│ 1. Prompt user for input: user_input = input("> ")    │
-└──────────────────────────┬─────────────────────────────┘
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│ 2. Append user message to history                      │
-│    add_user_message(messages, user_input)              │
-└──────────────────────────┬─────────────────────────────┘
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│ 3. Call API with entire history: answer = chat(messages)│
-└──────────────────────────┬─────────────────────────────┘
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│ 4. Append assistant/model reply to history             │
-│    add_assistant_message(messages, answer)             │
-└──────────────────────────┬─────────────────────────────┘
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│ 5. Display response formatted with delimiters ("---")  │
-└──────────────────────────┬─────────────────────────────┘
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│ 6. Loop back to Step 1 (`while True`)                  │
-└────────────────────────────────────────────────────────┘
-```
 
-### Managing Notebook Execution & Interruption
-- **Input Prompt Overlay**: In VS Code / Jupyter, calling `input("> ")` opens an input bar at the top of the editor window.
-- **Stopping the Chatbot**:
-  - *Option A (Course method)*: Click the **Interrupt Kernel** (stop square) button in the Jupyter toolbar or press `Esc`.
-  - *Option B (Graceful exit)*: Add an exit check `if user_input.strip().lower() in ("exit", "quit"): break`.
+<div class="lifecycle-steps">
+  <div class="lifecycle-step-card">
+    <div class="step-num-pill">1</div>
+    <div>
+      <div class="step-body-title">Prompt User Input</div>
+      <div class="step-body-desc">Captures user text via <code>user_input = input("&gt; ")</code>.</div>
+    </div>
+  </div>
 
-#### Complete Chatbot Loop Code:
+  <div class="lifecycle-step-card">
+    <div class="step-num-pill">2</div>
+    <div>
+      <div class="step-body-title">Input Sanitization &amp; Empty Turn Defense</div>
+      <div class="step-body-desc">Validates <code>if not user_input.strip(): continue</code> to prevent terminal 400 validation errors.</div>
+    </div>
+  </div>
+
+  <div class="lifecycle-step-card">
+    <div class="step-num-pill">3</div>
+    <div>
+      <div class="step-body-title">Append User Turn to History</div>
+      <div class="step-body-desc">Appends <code>add_user_message(messages, user_input)</code> to maintain chronological session memory.</div>
+    </div>
+  </div>
+
+  <div class="lifecycle-step-card">
+    <div class="step-num-pill">4</div>
+    <div>
+      <div class="step-body-title">Dispatch Full Cumulative History</div>
+      <div class="step-body-desc">Calls <code>answer = chat(messages)</code> with the entire conversation array.</div>
+    </div>
+  </div>
+
+  <div class="lifecycle-step-card">
+    <div class="step-num-pill">5</div>
+    <div>
+      <div class="step-body-title">Append Model Response &amp; Render</div>
+      <div class="step-body-desc">Saves <code>add_assistant_message(messages, answer)</code> and renders output between delimiters.</div>
+    </div>
+  </div>
+
+  <div class="lifecycle-step-card">
+    <div class="step-num-pill">6</div>
+    <div>
+      <div class="step-body-title">Loop Return (while True)</div>
+      <div class="step-body-desc">Returns to Step 1 until interrupted or user inputs <code>"exit"</code>.</div>
+    </div>
+  </div>
+</div>
+
 ```python
 messages = []
 
@@ -227,12 +338,12 @@ while True:
     user_input = input("> ")
     print(">", user_input)
 
-    # Optional graceful exit check
+    # Graceful exit trigger
     if user_input.strip().lower() in ("exit", "quit"):
-        print("Exiting chat session.")
+        print("Session terminated.")
         break
 
-    # Guard against accidental empty inputs (Enter key)
+    # Crucial input guard: Discard accidental empty returns
     if not user_input.strip():
         continue
 
@@ -245,44 +356,43 @@ while True:
     print("---")
 ```
 
-> [!WARNING]
-> **Critical Edge Case: Empty Inputs & Turn Validation**
-> - **The Symptom**: `ClientError: 400 INVALID_ARGUMENT: Requests ending with a model turn are not supported.` (or Anthropic `messages: content cannot be empty`).
-> - **The Cause**: Pressing **Enter** without typing anything produces an empty string (`user_input = ""`). The API validation layer discards empty text blocks, causing the payload to effectively terminate on the previous `model`/`assistant` response.
-> - **The Rule**: In both Claude and Gemini, the message payload must strictly alternate roles and **MUST end with a non-empty `user` turn**.
-> - **The Fix**: Always validate input with `if not user_input.strip(): continue` before appending to the message history.
-
 ---
 
-## System Prompts: Persona & Behavioral Steering
+## System Prompts: Persona & Behavioral Boundaries
 
 System prompts provide meta-level instructions that define the model's persona, tone, guardrails, and behavioral boundaries before conversational turns begin.
 
-### Case Study: The Math Tutor Pattern
-| Without System Prompt (Default) | With Math Tutor System Prompt |
-| :--- | :--- |
-| User: *"How do I solve $5x + 3 = 2$ for $x$?"* | User: *"How do I solve $5x + 3 = 2$ for $x$?"* |
-| **Model gives away full solution**: <br>`Subtract 3: 5x = -1, Divide by 5: x = -1/5` | **Model guides step-by-step**: <br>`"Our goal is to isolate x. What do you think we should do first to move the +3?"` |
+### Case Study: Concise Code Generation (93% Token Reduction)
 
-### API Parameter Patterns: Claude vs. Gemini
+<div class="compare-grid">
+  <div class="compare-card compare-bad">
+    <div class="compare-header">
+      <span>Default Prompt (No System Instructions)</span>
+    </div>
+    <p><code>"Write a Python function that checks a string for duplicate characters."</code></p>
+    <p><strong>Result</strong>: Over <strong>1,300+ characters</strong>. Lengthy introductory essay, complex docstrings, multiple algorithmic approaches, and concluding analysis.</p>
+  </div>
 
-| Feature | Anthropic Claude SDK | Google Gemini SDK |
-| :--- | :--- | :--- |
-| **Parameter Location** | Top-level argument `system="..."` | Inside `config={"system_instruction": "..."}` |
-| **Handling `None`** | ⚠️ **Throws error if passed `system=None`!** Must omit key dynamically. | Safely omitted or passed conditionally in `config`. |
+  <div class="compare-card compare-good">
+    <div class="compare-header">
+      <span>With System Prompt ("Concise Python Engineer")</span>
+    </div>
+    <p><code>system = "You are a Python engineer who writes very concise code"</code></p>
+    <p><strong>Result</strong>: Under <strong>90 characters</strong> (93% token reduction!):</p>
+    <code>def has_duplicates(s: str) -&gt; bool: return len(s) != len(set(s))</code>
+  </div>
+</div>
 
-### Critical SDK Gotcha: Dynamic Parameter Unpacking
-In the Anthropic Python SDK, calling `client.messages.create(..., system=None)` raises a validation error. To create a flexible, reusable `chat()` helper function, dynamically construct the `params` dictionary:
+### SDK Gotcha: Dynamic Parameter Unpacking in Claude
+In the Anthropic Python SDK, passing `system=None` throws a validation error. Construct dynamic parameter dictionaries:
 
 ```python
 def chat(messages, system=None):
     params = {
-        "model": model,
+        "model": "claude-3-7-sonnet-20250219",
         "max_tokens": 1000,
         "messages": messages,
     }
-
-    # Only include the "system" key if a system prompt was actually provided
     if system:
         params["system"] = system
 
@@ -290,129 +400,42 @@ def chat(messages, system=None):
     return message.content[0].text
 ```
 
-### Implementation: Enforcing Concise Code Generation
-When asked to write a function checking for duplicate characters without a system prompt, models tend to be verbose—providing lengthy background explanations, time complexity breakdowns, and multiple alternatives.
-
-* **Target Prompt**: `"Write a Python function that checks a string for duplicate characters."`
-* **System Prompt Applied**: `"You are a Python engineer who writes very concise code"`
-* **Output Comparison**:
-  * *Default*: ~1,300+ characters with docstrings, explanations, and edge-case caveats.
-  * *With System Prompt*: Under 90 characters:
-    ```python
-    def has_duplicates(s: str) -> bool:
-        return len(s) != len(set(s))
-    ```
-  * **Result**: **93% token reduction** while preserving 100% functionality and correctness.
-
 ---
 
-## Temperature: Controlling Output Randomness & Distribution
+## Temperature: Controlling Output Randomness
 
-Temperature is a float value between `0.0` and `1.0` that governs the **probability distribution** when sampling next tokens.
+Temperature is a float value between `0.0` and `1.0` that governs the probability distribution when sampling next tokens.
 
-```text
-Input Tokens: "What" ──► "do" ──► "you" ──► "think"
-                                                │
-                 ┌──────────────────────────────┴──────────────────────────────┐
-                 ▼                                                             ▼
-       Low Temperature (near 0.0)                                    High Temperature (near 1.0)
-• Sharpens probability toward top token                        • Flattens distribution across tokens
-• "about" probability approaches 100%                          • Rare tokens (e.g. "when", "we") get selected
-• Deterministic, reproducible, consistent                      • Creative, diverse, unexpected output
-```
-
-### Temperature Ranges & Recommended Use Cases
-
-| Temperature Range | Behavior | Optimal Real-World Use Cases |
+| Temperature Tier | Probability Distribution | Optimal Real-World Use Cases |
 | :--- | :--- | :--- |
-| **Low (`0.0 - 0.3`)** | **Deterministic & Factual**<br>• Greedily picks highest-probability token | • Data extraction & schema parsing<br>• Code generation & debugging<br>• Content moderation & classification |
-| **Medium (`0.4 - 0.7`)** | **Balanced & Coherent**<br>• Blends creativity with logical structure | • Document summarization<br>• Educational tutoring & Q&A<br>• Constrained writing & problem solving |
-| **High (`0.8 - 1.0`)** | **Creative & Exploratory**<br>• Greater variance across runs | • Brainstorming novel concepts<br>• Marketing copy & ad headlines<br>• Creative writing & joke generation |
-
-### Parameter Integration: Updating chat() for Temperature
-
-```python
-def chat(messages, system=None, temperature=1.0):
-    params = {
-        "model": model,
-        "max_tokens": 1000,
-        "messages": messages,
-        "temperature": temperature,
-    }
-
-    if system:
-        params["system"] = system
-
-    message = client.messages.create(**params)
-    return message.content[0].text
-```
+| **Low (`0.0 - 0.2`)** | **Greedy &amp; Deterministic**<br>Sharply peaks highest-probability tokens | • Code generation &amp; automated debugging<br>• Structured JSON extraction &amp; schema parsing<br>• Policy compliance &amp; ticket triage |
+| **Medium (`0.4 - 0.7`)** | **Balanced &amp; Coherent**<br>Smooth probability curve | • General dialogue &amp; customer support<br>• Document summarization &amp; educational Q&amp;A<br>• Technical explanation synthesis |
+| **High (`0.8 - 1.0`)** | **Creative &amp; Exploratory**<br>Flattens candidate distribution | • Brainstorming novel product concepts<br>• Marketing copy variants &amp; headline generation<br>• Creative writing &amp; roleplay |
 
 ---
 
-## Production Architecture: Customer Support Specialist Service
+## Real-World Architecture: Customer Support Specialist Service
 
-> 💡 **Coursera Real-World Application**: [Practical Scenario — Customer Support Specialist AI](https://www.coursera.org/learn/building-with-the-claude-api/activity/practice-moment-static/17BC3/practical-scenario)
->
-> In production applications, **System Prompting** and **Temperature** work together as two complimentary control axes:
-> 1. **System Prompt** = The **Rulebook & Guardrails** (Who the model is, what it knows, what it must NEVER reveal).
-> 2. **Temperature** = The **Creativity Dial** (How strictly it adheres to high-probability factual tokens vs. exploring novel token paths).
+In production backends, **System Prompting** and **Temperature** work as two complementary control axes:
 
-```text
-                                  ┌─────────────────────────────┐
-                                  │       Incoming Query        │
-                                  └──────────────┬──────────────┘
-                                                 │
-                                                 ▼
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│ 1. SYSTEM PROMPT (Fixed Persona & Corporate Boundaries)                                      │
-│ "You are a helpful, empathetic customer support agent for a clothing brand. Always         │
-│  prioritize solving the customer's issue. Never provide internal company policy documents." │
-└──────────────────────────────────────────────┬──────────────────────────────────────────────┘
-                                               │
-                                               ▼
-                              ┌──────────────────────────────────┐
-                              │  Query Routing & Task Selection  │
-                              └───────┬──────────────────┬───────┘
-                                      │                  │
-                Factual Inquiries     │                  │  Creative Tasks
-        (Order status, return policy) │                  │  (Outfit styling, recommendations)
-                                      ▼                  ▼
-                     ┌──────────────────┐      ┌──────────────────┐
-                     │ Temperature: 0.1 │      │ Temperature: 0.8 │
-                     └────────┬─────────┘      └────────┬─────────┘
-                              │                         │
-                              ▼                         ▼
-                     [ Precise & Factual ]     [ Varied & Expressive ]
-                     • Zero hallucinations     • Diverse fashion pairings
-                     • Predictable citations   • Engaging recommendations
-```
+1. **System Prompt** = The **Rulebook & Guardrails** (Who the model is, what it knows, what it must NEVER reveal).
+2. **Temperature** = The **Creativity Dial** (Deterministic adherence for orders vs. exploratory recommendations).
 
-### 1. Role Assignment via System Prompting
-* **Prompt**: `"You are a helpful, empathetic customer support agent for a clothing brand. Always prioritize solving the customer's issue and maintain a polite, professional tone. Never provide internal company policy documents directly to the customer."`
-* **Production Value**:
-  * **Brand Alignment**: Prevents the assistant from sounding like a generic, ungrounded LLM.
-  * **Security & Boundary Enforcement**: Restricts disclosure of confidential internal procedures or confidential documents.
-  * **Clarifying Questions Pattern**: Encourages active dialogue (e.g., asking *"What is your order number?"* or *"What style are you looking for?"*) instead of generating unhelpful text dumps.
-
-### 2. Dynamic Temperature Routing Pattern
-A robust real-world backend routes queries to different temperature settings based on the user's intent:
+### Dynamic Intent Routing Pattern
 
 ```python
-# Production Pattern: Dynamic Temperature Allocation
 def handle_customer_query(client, messages, intent="factual"):
     system_prompt = (
-        "You are a helpful, empathetic customer support agent for a clothing brand. "
-        "Always prioritize solving the customer's issue and maintain a polite, professional tone. "
-        "Never provide internal company policy documents directly to the customer. "
-        "Ask clarifying questions when key information is missing."
+        "You are an empathetic customer support specialist for an e-commerce platform. "
+        "Always prioritize solving the customer's problem while strictly defending company policy. "
+        "Never issue cash refunds exceeding $50. Never disclose internal staff email addresses."
     )
 
-    # Route temperature based on task intent
-    temperature = 0.1 if intent == "factual" else 0.8
+    # Route temperature based on intent classification
+    temperature = 0.1 if intent == "factual" else 0.7
 
-    # Anthropic Messages API
     response = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
+        model="claude-3-7-sonnet-20250219",
         max_tokens=1000,
         system=system_prompt,
         temperature=temperature,
@@ -423,430 +446,233 @@ def handle_customer_query(client, messages, intent="factual"):
 
 ---
 
-## Core API Mechanics & Security Boundaries
-
-> 📖 **Course Link**: [Coursera — Working with the API](https://www.coursera.org/learn/building-with-the-claude-api/supplement/Fk551/working-with-the-api)
->
-> **Core Concepts from the Lesson**:
-> - **Security Boundary**: API keys must strictly live on your backend server—never in client-side code (web or mobile).
-> - **Model Processing Pipeline**: The 4-stage transformation from raw text $\rightarrow$ tokens $\rightarrow$ vector embeddings $\rightarrow$ contextual attention $\rightarrow$ next-token generation.
-> - **Stop Conditions**: Always inspect `response.stop_reason` (`end_turn` vs. `max_tokens`) to ensure responses weren't prematurely cut off.
-> - **Token Accounting**: Track `usage.input_tokens` and `usage.output_tokens` to monitor latency, cost, and rate limits.
-
----
-
 ## Response Streaming: Real-Time Token Generation
 
-### Latency Optimization: Time-to-First-Token (TTFT)
-In standard synchronous calls, generation blocks completely until the model generates the entire response. For lengthy explanations or complex reasoning, this can take **10 to 30 seconds**.
-Users left staring at a spinning loader perceive the application as unresponsive or broken.
-
-```text
-❌ Synchronous Request (Blocked):
-User ──► Request ──► Server ──► Claude (Generates for 10-30s...) ──► Full Message ──► User sees text all at once
-
-✅ Streamed Request (Instant Feedback):
-User ──► Request ──► Server ──► Claude
-                                  │
-                                  ├──► Event 1: "Quantum "    ──► Relayed to User (~0.8s)
-                                  ├──► Event 2: "computing "  ──► Relayed to User (~1.0s)
-                                  ├──► Event 3: "is a type "  ──► Relayed to User (~1.2s)
-                                  └──► Event N: "of physics." ──► Relayed to User (~2.1s)
-```
+### Eliminating Frozen Screens with Sub-Second TTFT
+In standard synchronous calls, generation blocks completely until the model completes its response (often 10–25 seconds). Response streaming delivers immediate visual feedback.
 
 ### Server-Sent Events (SSE) Stream Lifecycle
-Anthropic's Messages API streams structured events over a single persistent Server-Sent Events (SSE) connection:
 
-```text
- ┌─────────────────────────────────────────────────────────────┐
- │ 1. RawMessageStartEvent / MessageStart                      │
- │    • Sent immediately when Claude accepts the request       │
- │    • Contains initial message metadata (id, role, model)    │
- └──────────────────────────────┬──────────────────────────────┘
-                                │
-                                ▼
- ┌─────────────────────────────────────────────────────────────┐
- │ 2. RawContentBlockStartEvent / ContentBlockStart            │
- │    • Marks the beginning of a content block (text or tool)  │
- └──────────────────────────────┬──────────────────────────────┘
-                                │
-                                ▼
- ┌─────────────────────────────────────────────────────────────┐
- │ 3. RawContentBlockDeltaEvent / ContentBlockDelta (REPEATED) │
- │    • ⭐ CONTAINS THE GENERATED TEXT CHUNKS ⭐               │
- │    • Emitted continuously as new tokens are predicted       │
- └──────────────────────────────┬──────────────────────────────┘
-                                │
-                                ▼
- ┌─────────────────────────────────────────────────────────────┐
- │ 4. RawContentBlockStopEvent / ContentBlockStop              │
- │    • Marks the completion of the current content block      │
- └──────────────────────────────┬──────────────────────────────┘
-                                │
-                                ▼
- ┌─────────────────────────────────────────────────────────────┐
- │ 5. RawMessageDeltaEvent / MessageDelta                      │
- │    • Emits final completion data: stop_reason & usage stats │
- └──────────────────────────────┬──────────────────────────────┘
-                                │
-                                ▼
- ┌─────────────────────────────────────────────────────────────┐
- │ 6. RawMessageStopEvent / MessageStop                        │
- │    • Formal closure event signaling the end of the stream   │
- └─────────────────────────────────────────────────────────────┘
-```
+<div class="sse-flow-grid">
+  <div class="sse-node">
+    <div class="sse-badge">STAGE 1</div>
+    <div class="sse-title">RawMessageStartEvent</div>
+    <div class="sse-desc">Emitted immediately upon acceptance. Contains message ID, model name, and initial role.</div>
+  </div>
 
----
+  <div class="sse-node">
+    <div class="sse-badge">STAGE 2</div>
+    <div class="sse-title">RawContentBlockStartEvent</div>
+    <div class="sse-desc">Marks the beginning of a content block (text or tool call).</div>
+  </div>
 
-### Claude Streaming Implementations
+  <div class="sse-node sse-highlight">
+    <div class="sse-badge">STAGE 3 (REPEATED)</div>
+    <div class="sse-title">RawContentBlockDeltaEvent</div>
+    <div class="sse-desc">⭐ Carries the actual generated token fragments. Flushed immediately to the UI.</div>
+  </div>
 
-#### Pattern A: High-Level Context Manager (`client.messages.stream`) — Recommended
-Provides an ergonomic `.text_stream` iterator and handles connection lifecycles automatically:
+  <div class="sse-node">
+    <div class="sse-badge">STAGE 4</div>
+    <div class="sse-title">RawContentBlockStopEvent</div>
+    <div class="sse-desc">Signals that the current block has finished generating.</div>
+  </div>
 
-```python
-with client.messages.stream(
-    model="claude-3-5-sonnet-20241022",
-    max_tokens=1000,
-    messages=messages,
-) as stream:
-    for text in stream.text_stream:
-        print(text, end="", flush=True)
+  <div class="sse-node">
+    <div class="sse-badge">STAGE 5</div>
+    <div class="sse-title">RawMessageDeltaEvent</div>
+    <div class="sse-desc">Carries stop reason (<code>end_turn</code>, <code>stop_sequence</code>) and final token usage stats.</div>
+  </div>
 
-# Collect accumulated full message for database storage
-final_message = stream.get_final_message()
-print("\nTokens consumed:", final_message.usage.output_tokens)
-```
+  <div class="sse-node">
+    <div class="sse-badge">STAGE 6</div>
+    <div class="sse-title">RawMessageStopEvent</div>
+    <div class="sse-desc">Formal socket closure event signaling complete stream termination.</div>
+  </div>
+</div>
 
-#### Pattern B: Low-Level Event Streaming (`stream=True`)
-Directly iterate through raw SDK events when you need low-level telemetry, tool-call chunk tracking, or custom event routing:
+### Streaming Code Implementations
 
-```python
-stream = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
-    max_tokens=1000,
-    messages=messages,
-    stream=True,
-)
+=== "Anthropic Claude (messages.stream)"
 
-for event in stream:
-    if event.type == "content_block_delta":
-        print(event.delta.text, end="", flush=True)
-```
+    ```python
+    with client.messages.stream(
+        model="claude-3-7-sonnet-20250219",
+        max_tokens=1000,
+        messages=messages,
+    ) as stream:
+        for text in stream.text_stream:
+            print(text, end="", flush=True)
 
----
+    # Accumulate complete message for database logging
+    final_message = stream.get_final_message()
+    print("\nTokens consumed:", final_message.usage.output_tokens)
+    ```
 
-### Google Gemini Streaming Implementation (`google-genai`)
+=== "Google Gemini (send_message_stream)"
 
-| Feature | Anthropic Claude | Google Gemini (`google-genai`) |
-| :--- | :--- | :--- |
-| **High-Level Text Iterator** | `stream.text_stream` | `for chunk in response: chunk.text` |
-| **Chat Session Streaming** | Manual event accumulator | `chat.send_message_stream(prompt)` |
-| **Accumulated Final Message** | `stream.get_final_message()` | `chat.get_history()` (auto-maintained) |
-| **Low-Level Method** | `client.messages.create(stream=True)` | `client.models.generate_content_stream()` |
+    ```python
+    chat = client.chats.create(model="gemini-2.5-flash")
 
-#### Gemini Chat Streaming Implementation
-```python
-from google import genai
+    response = chat.send_message_stream(
+        "Explain quantum computing in two sentences."
+    )
+    for chunk in response:
+        print(chunk.text, end="", flush=True)
 
-client = genai.Client()
-chat = client.chats.create(model="gemini-3.5-flash-lite")
-
-response = chat.send_message_stream(
-    "Write a 1 sentence description of a fake database"
-)
-for chunk in response:
-    print(chunk.text, end="", flush=True)
-
-# Conversation history is updated automatically
-print("\nHistory length:", len(chat.get_history()))
-```
-
----
-
-## Controlled Model Output: Sampling Parameters & Boundaries
-
-Beyond System Prompts and Temperature, LLM APIs provide several fine-grained parameters to constrain, shape, and terminate output generation with mathematical precision.
-
-### Parameter Reference & Comparison Matrix
-
-| Parameter | Type / Range | What It Controls | When to Use | Stop Reason When Triggered |
-| :--- | :--- | :--- | :--- | :--- |
-| **`max_tokens`** | Integer (e.g. `100`, `1000`) | Hard ceiling on output length in tokens | Strict cost budgets, preventing runaway loops, concise answers | `stop_reason == "max_tokens"` |
-| **`stop_sequences`** | List of Strings (e.g. `["\n\n"]`, `["###"]`) | Text pattern that immediately halts generation when emitted | Section delimiters, markdown blocks, stop before unwanted chatter | `stop_reason == "stop_sequence"` |
-| **`temperature`** | Float (`0.0` – `1.0`) | Sharpness of token probability distribution | `0.0` for deterministic/factual, `0.8+` for creative diversity | — |
-| **`top_k`** | Integer (e.g. `40`) | Restricts candidate tokens to the $k$ highest-probability tokens | Eliminates extreme long-tail low-probability nonsense tokens | — |
-| **`top_p`** | Float (`0.0` – `1.0`, e.g. `0.9`) | **Nucleus Sampling**: Cuts off tokens once cumulative probability reaches $p$ | Adapts dynamically: tighter pool when confident, wider pool when unsure | — |
-
----
-
-### Deep Dive: Sampling Pipeline Filter Stages
-
-```text
-Full Vocabulary (~100,000+ Tokens)
-        │
-        ▼
-[ Step 1: Top-K Filter (e.g. top_k = 40) ]
-        │  Discards all tokens outside the top 40 candidates.
-        ▼
-[ Step 2: Top-P / Nucleus Filter (e.g. top_p = 0.90) ]
-        │  Sorts remaining tokens by probability and keeps only the smallest set
-        │  whose cumulative sum reaches 90%.
-        ▼
-[ Step 3: Temperature Scaling (e.g. temperature = 0.3) ]
-        │  Divides log probabilities by temperature to sharpen (low) or flatten (high)
-        │  the final selection odds.
-        ▼
-[ Step 4: Token Picked & Checked Against Stop Sequences ]
-        │  If token completes any string in `stop_sequences` (e.g. "###"),
-        ▼  generation terminates immediately with `stop_reason="stop_sequence"`.
-```
-
----
-
-### Dual Implementations: Combining Parameters for Fine-Grained Control
-
-#### 1. Anthropic Claude Implementation
-```python
-import anthropic
-
-client = anthropic.Anthropic()
-
-# Combine parameters for deterministic, bounded product description
-message = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
-    max_tokens=500,
-    temperature=0.3,
-    top_p=0.9,
-    top_k=40,
-    stop_sequences=["###", "\n\n---"],
-    messages=[
-        {"role": "user", "content": "Generate a concise product description for waterproof running shoes."}
-    ],
-)
-
-print(message.content[0].text)
-print("Stop Reason:", message.stop_reason)      # e.g. "end_turn" or "stop_sequence"
-print("Tokens Used:", message.usage.output_tokens)
-```
-
-#### 2. Google Gemini Companion (`google-genai`)
-In the Google GenAI SDK, sampling parameters and stop sequences are configured cleanly through `types.GenerateContentConfig`:
-
-```python
-from google import genai
-from google.genai import types
-
-client = genai.Client()
-
-config = types.GenerateContentConfig(
-    max_output_tokens=500,
-    temperature=0.3,
-    top_p=0.9,
-    top_k=40,
-    stop_sequences=["###", "\n\n---"],
-)
-
-response = client.models.generate_content(
-    model="gemini-3.5-flash-lite",
-    contents="Generate a concise product description for waterproof running shoes.",
-    config=config,
-)
-
-print(response.text)
-```
+    print("\nTotal turns stored:", len(chat.get_history()))
+    ```
 
 ---
 
 ## Structured Data Generation: Assistant Prefilling & Native Schemas
 
-In production backends and UI tools (e.g. an **AWS EventBridge Rule Generator**), applications require raw, parseable data (valid JSON, code, or bulleted lists) with **zero conversational filler**.
+Applications connecting LLMs to databases, CRMs, and APIs require raw, strictly validated JSON with **zero conversational filler**.
 
-### The Engineering Challenge: Conversational Pollution & Parsing Failures
-By default, language models wrap structured output in markdown code fences and add friendly conversational text:
+### The 4-Stage Assistant Prefilling Pipeline (Claude)
 
-```markdown
-# EventBridge Rule
-```json
-{
-  "source": ["aws.ec2"],
-  "detail-type": ["EC2 Instance State-change Notification"]
-}
-```
-This rule captures EC2 instance state changes when instances start running or stop.
-```
+Claude allows developers to **end the `messages` list with an `assistant` turn**. When Claude receives an unfinished assistant message, it continues generating directly from that exact token sequence:
 
-If your Python backend attempts `json.loads(response.text)`, it **crashes immediately** with `json.decoder.JSONDecodeError`.
+<div class="prefill-flow-container">
+  <div class="prefill-stages">
+    <div class="prefill-stage-row">
+      <span class="prefill-tag tag-user">USER TURN</span>
+      <span class="prefill-text"><code>"Generate an EventBridge rule for EC2 state changes as JSON"</code></span>
+    </div>
 
----
+    <div class="prefill-stage-row">
+      <span class="prefill-tag tag-assistant">ASSISTANT PREFILL</span>
+      <span class="prefill-text">Developer injects <code>{"role": "assistant", "content": '{\n  "source":'}</code> &bull; <em>Claude cannot produce intro chatter because the JSON object is already open!</em></span>
+    </div>
 
-### Anthropic Architecture: Assistant Prefilling & Stop Sequences
+    <div class="prefill-stage-row">
+      <span class="prefill-tag tag-model">TOKEN GENERATION</span>
+      <span class="prefill-text">Claude generates pure key-value pairs directly into the open schema.</span>
+    </div>
 
-Claude allows developers to **end the `messages` list with an `assistant` turn**. When Claude receives an unfinished assistant message, it treats that text as already spoken and continues generating directly from that token.
+    <div class="prefill-stage-row">
+      <span class="prefill-tag tag-stop">STOP SEQUENCE</span>
+      <span class="prefill-text">Developer sets <code>stop_sequences=['}']</code> &bull; Claude terminates immediately upon closing the root object, cutting off any closing explanations.</span>
+    </div>
+  </div>
+</div>
 
-```text
- ┌─────────────────────────────────────────────────────────────┐
- │ User Message                                                │
- │ "Generate an EventBridge rule as JSON"                      │
- └──────────────────────────────┬──────────────────────────────┘
-                                │
-                                ▼
- ┌─────────────────────────────────────────────────────────────┐
- │ Assistant Message (PREFILLED)                               │
- │ "```json"                                                   │
- └──────────────────────────────┬──────────────────────────────┘
-                                │  Claude thinks: "I've already started the code block!
-                                │  I can't write conversational intro text now."
-                                ▼
- ┌─────────────────────────────────────────────────────────────┐
- │ Claude Generates JSON Tokens                                │
- │ \n{\n  "source": ["aws.ec2"]\n}\n                           │
- └──────────────────────────────┬──────────────────────────────┘
-                                │  Claude reaches the end and wants to close the block:
-                                │  It emits "```"
-                                ▼
- ┌─────────────────────────────────────────────────────────────┐
- │ Stop Sequence Triggered: ["```"]                            │
- │ • Halts generation IMMEDIATELY                              │
- │ • Completely cuts off closing explanations & chatter        │
- └─────────────────────────────────────────────────────────────┘
-```
+### Dual Structured Output Implementations
 
-#### Production Python Pattern (Claude):
-```python
-messages = []
-add_user_message(messages, "Generate a very short event bridge rule as json")
-add_assistant_message(messages, "```json")
+=== "Anthropic Claude (Prefilling & Stop Sequences)"
 
-# Claude stops the exact moment it closes the markdown block
-clean_json_str = chat(messages, stop_sequences=["```"])
+    ```python
+    messages = [
+        {"role": "user", "content": "Generate an EventBridge rule for EC2 state changes as JSON"},
+        {"role": "assistant", "content": '{\n  "source": ["aws.ec2"],\n  "detail-type":'}
+    ]
 
-# Parses cleanly into Python dictionary without any regex!
-import json
-data = json.loads(clean_json_str.strip())
-```
+    response = client.messages.create(
+        model="claude-3-7-sonnet-20250219",
+        max_tokens=256,
+        temperature=0.0,
+        stop_sequences=['}'],
+        messages=messages
+    )
 
----
+    clean_json = '{\n  "source": ["aws.ec2"],\n  "detail-type":' + response.content[0].text + '}'
+    import json
+    data = json.loads(clean_json)
+    ```
 
-### Google Gemini Architecture: Logit-Constrained Native JSON & Pydantic
+=== "Google Gemini (Pydantic Native Schema)"
 
-In Google Gemini, ending requests with an assistant/model turn is forbidden (`ClientError: 400 Requests ending with a model turn are not supported`).
-Instead, Gemini solves this natively at the token generation level:
+    ```python
+    from google import genai
+    from google.genai import types
+    from pydantic import BaseModel, Field
 
-1. **Native JSON Mode (`response_mime_type="application/json"`)**:
-   Forces the model's logits to output only syntactically valid JSON. No markdown backticks are ever produced.
-2. **Pydantic Schema Enforcement (`response_schema=BaseModel`)**:
-   Guarantees that the returned JSON strictly adheres to your required keys, arrays, and types.
+    class EventBridgeRule(BaseModel):
+        source: list[str] = Field(description="AWS source service")
+        detail_type: list[str] = Field(description="Event detail type")
 
-#### Production Python Pattern (Gemini):
-```python
-from google import genai
-from google.genai import types
-from pydantic import BaseModel, Field
+    config = types.GenerateContentConfig(
+        response_mime_type="application/json",
+        response_schema=EventBridgeRule,
+        temperature=0.0
+    )
 
-client = genai.Client()
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents="Generate an EventBridge rule for EC2 state changes as JSON",
+        config=config
+    )
 
-class EventBridgeRule(BaseModel):
-    source: list[str] = Field(description="AWS source service")
-    detail_type: list[str] = Field(description="Event detail type")
-    state: list[str] = Field(description="State filters")
-
-config = types.GenerateContentConfig(
-    response_mime_type="application/json",
-    response_schema=EventBridgeRule,
-    temperature=0.0
-)
-
-response = client.models.generate_content(
-    model="gemini-3.5-flash-lite",
-    contents="Generate an EventBridge rule to monitor EC2 instances state changes",
-    config=config
-)
-
-# 100% Guaranteed valid JSON matching EventBridgeRule schema
-import json
-rule = json.loads(response.text)
-```
-
----
-
-### Architectural Comparison: Claude vs. Gemini
-
-| Feature | Anthropic Claude | Google Gemini (`google-genai`) |
-| :--- | :--- | :--- |
-| **Primary Technique** | Assistant Turn Prefill (`add_assistant_message("```json")`) | Native JSON Mode (`response_mime_type="application/json"`) |
-| **Stop Mechanism** | `stop_sequences=["```"]` | `stop_sequences` OR native schema termination |
-| **Intro Chatter Prevention** | Pre-fills the assistant turn before model begins | Logit-level token mask restricts non-JSON tokens |
-| **Outro Chatter Prevention** | Stop sequence triggers on closing delimiter | Schema boundary automatically closes JSON object |
-| **Type Validation** | Manual via Pydantic after response | Direct API enforcement via `response_schema` |
+    import json
+    data = json.loads(response.text)
+    ```
 
 ---
 
 ## Complete Blueprint: Automated Support & Ticket Triage Engine
 
-> [!NOTE]
-> In real-world applications, **all 5 techniques you learned in Module 1 work together in a single unified architecture**.
-> Below is a complete architectural blueprint of an **Automated Customer Support & Ticket Escalation Service** (as used in modern e-commerce systems).
+In real-world applications, **all 5 techniques you learned in Module 1 work together in a unified architecture**:
+
+<div class="arch-flow-wrapper">
+  <div class="arch-flow-header">
+    <div>
+      <span class="arch-pulse-badge">
+        <span class="arch-pulse-dot"></span>
+        PIPELINE BLUEPRINT
+      </span>
+      <h3 class="arch-title">Customer Support &amp; Triage Engine</h3>
+    </div>
+    <a href="case-study/" class="arch-btn-action">
+      <span>Launch Interactive Capstone</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="lifecycle-steps">
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">1</div>
+      <div>
+        <div class="step-body-title">Incoming Customer Request</div>
+        <div class="step-body-desc"><em>"Hi, my package was supposed to arrive yesterday, but order #8492 is still stuck in transit. Cancel it and refund me right now!"</em></div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">2</div>
+      <div>
+        <div class="step-body-title">Backend Session Continuity &amp; Guardrails</div>
+        <div class="step-body-desc">Loads previous turn context, binds corporate refund boundaries ($50 max), and selects deterministic temperature (0.0).</div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">3</div>
+      <div>
+        <div class="step-body-title">Token-Streamed Response (Sub-second TTFT)</div>
+        <div class="step-body-desc">Customer sees empathetic stream response within 0.8s explaining carrier delay and policy boundaries.</div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">4</div>
+      <div>
+        <div class="step-body-title">Post-Turn Structured Extraction</div>
+        <div class="step-body-desc">Assistant prefill / Native JSON mode outputs strictly validated ticket payload: <code>{"order_id": 8492, "sentiment": "angry", "escalate": true}</code>.</div>
+      </div>
+    </div>
+
+    <div class="lifecycle-step-card">
+      <div class="step-num-pill">5</div>
+      <div>
+        <div class="step-body-title">Automated CRM &amp; Database Actions</div>
+        <div class="step-body-desc">Dispatches high-priority ticket to Zendesk and flags order #8492 for warehouse carrier review in PostgreSQL.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 
-### System Architecture & Pipeline Flow
+## 🚀 Next Steps
 
-```text
-[ 1. Customer in Mobile/Web App ]
-  "Hi, my package was supposed to arrive yesterday, but order #8492
-   is still stuck in transit. Cancel it and refund me right now!"
-                 │
-                 ▼
-[ 2. Backend Application Server (FastAPI / Express) ]
-  • Retrieves user session history from Redis (PILLAR 4: Multi-Turn Continuity)
-  • Injects corporate guardrails & boundaries (PILLAR 1: System Prompt)
-  • Selects temperature based on task intent (PILLAR 2: Dynamic Temperature)
-                 │
-                 ├──► STREAMING PATH (User Experience)
-                 │    Uses `client.messages.stream` or `chat.send_message_stream`
-                 │    Pushes tokens over WebSockets / SSE in real time (PILLAR 3: Streaming)
-                 │    Customer sees response typing within ~0.8 seconds!
-                 │
-                 ▼
-[ 3. Post-Conversation Triage Engine ]
-  • Backend requests structured analysis from Claude/Gemini
-  • Uses Assistant Prefill (`"```json"`) + Stop Sequence (`"```"`) OR Native JSON Mode
-  • Obtains 100% pure, parseable JSON (PILLAR 5: Structured Output)
-                 │
-                 ▼
-[ 4. Production Database & CRM Actions ]
-  {
-    "order_id": 8492,
-    "sentiment": "angry",
-    "issue": "shipping_delay",
-    "escalate_to_human": true
-  }
-  • Automatically inserts high-priority ticket into Zendesk / Salesforce
-  • Flags order #8492 for warehouse review in PostgreSQL
-```
-
----
-
-### Architectural Value: How the 5 Pillars Solve Real Engineering Problems
-
-| Module 1 Concept | Real-World Engineering Problem It Solves | What Happens If You Don't Use It |
-| :--- | :--- | :--- |
-| **1. System Prompt** | **Brand Safety & Legal Guardrails**: Restricts refunds over $50, protects internal employee emails, and forces polite empathy. | The model promises unauthorized $500 refunds or leaks confidential company memos. |
-| **2. Temperature (`0.0`)** | **Eliminating Business Hallucinations**: Ensures return policies and warranty rules are deterministic and factual. | High temperature causes the model to invent non-existent 90-day return windows. |
-| **3. Response Streaming** | **Sub-Second TTFT (User Retention)**: Streams tokens incrementally over SSE instead of waiting 15s for full blocks. | 40%+ of users bounce when staring at a frozen screen with a spinning loader. |
-| **4. Multi-Turn History** | **Conversation Continuity**: Re-sends conversation context so references like *"check my previous order instead"* work seamlessly. | The model has total amnesia on Turn 2, asking the customer to repeat everything. |
-| **5. Structured Data & Stop Sequences** | **Connecting AI to SQL & CRMs**: Emits pure JSON so Python can run `json.loads()` and update databases without regex failures. | Markdown backticks and conversational chatter cause `JSONDecodeError`, crashing backend workers. |
-
----
-
-### Interactive Capstone Project Notebook
-
-> **Run the Capstone Project**: [**`case-study.ipynb`**](case-study.ipynb)
-> 
-> Open and execute the full working implementation in Jupyter with zero API fees using Google Gemini (`gemini-3.5-flash-lite`).
->
-> **What You Can Test Live**:
-> 1. **Real-Time Token Streaming**: Watch tokens stream chunk-by-chunk across multiple conversational turns.
-> 2. **Strict Guardrail Compliance**: Test how the agent gracefully denies unauthorized cash refunds and defends brand boundaries.
-> 3. **Automated Pydantic Schema Extraction**: Freeform English chat is converted directly into validated, structured JSON.
-> 4. **Automated Database & CRM Mutations**: Triggers mock Zendesk priority escalations and PostgreSQL order updates.
+Continue to the **[Module 01 Summary & Next Steps Guide](next-steps.md)** to review core takeaways, explore practice projects, and prepare for **Module 02: Prompt Engineering & Evaluation**.
