@@ -37,7 +37,7 @@ This module covers foundational API connectivity, request lifecycles, and core p
 - [x] **Response Streaming**: Real-time token streaming via Server-Sent Events (SSE)
 - [x] **Controlled Model Output**: `max_tokens`, `stop_sequences`, `top_k`, and `top_p` parameters
 - [x] **Structured Data & JSON Mode**: Forcing schema compliance and predictable outputs
-- [ ] **Structured Data Exercise**: Parsing, validation, and real-world extraction
+- [x] **Structured Data Exercise**: Parsing, validation, and real-world extraction (AWS CLI Commands)
 - [ ] **Optimizing Output & Dialogue**: Graded assignment and second interactive dialogue
 - [ ] **Module 01 Capstone**: 🌐 Deploy GitHub Pages live documentation website
 
