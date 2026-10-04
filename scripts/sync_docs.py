@@ -72,7 +72,7 @@ def setup_docs():
     # Module 01 Dialogue Review -> docs/module-01/dialogue-review.md
     sync_file(m1_src / "module-01-dialogue-review.md", m1_dst / "dialogue-review.md")
 
-    # Flagship Case Study Notebook -> docs/module-01/case-study.ipynb
+    # Case Study Notebook -> docs/module-01/case-study.ipynb
     sync_file(m1_src / "case-study.ipynb", m1_dst / "case-study.ipynb")
 
     # All module-01 companion notebooks -> docs/module-01/notebooks/
@@ -101,7 +101,7 @@ def setup_docs():
     # Sync dataset.json
     sync_file(m2_src / "dataset.json", m2_dst / "dataset.json")
 
-    # Flagship Capstone Notebook -> docs/module-02/case-study.ipynb
+    # Case Study Notebook -> docs/module-02/case-study.ipynb
     sync_file(m2_src / "case-study.ipynb", m2_dst / "case-study.ipynb")
 
     # Sync notebooks

@@ -41,9 +41,9 @@
     
     <div class="lms-answer-box">
       <strong>Deep Architectural Rationale:</strong><br>
-      Generating hundreds of synthetic test cases is a volume-heavy task where format compliance and topic breadth matter far more than deep multi-step reasoning. Fast, lightweight models (Haiku / Flash) generate diverse test cases at ~10x lower latency and ~95% lower cost compared to flagship frontier models (Sonnet / Opus / Pro).
+      Generating hundreds of synthetic test cases is a volume-heavy task where format compliance and topic breadth matter far more than deep multi-step reasoning. Fast, lightweight models (Haiku / Flash) generate diverse test cases at ~10x lower latency and ~95% lower cost compared to larger frontier models (Sonnet / Opus / Pro).
       <br><br>
-      <strong>Engineering Tip:</strong> Reserve your expensive flagship models for the actual candidate generation or for complex multi-criteria evaluation judges.
+      <strong>Engineering Tip:</strong> Reserve larger frontier models for the actual candidate generation or for complex multi-criteria evaluation judges.
     </div>
 
 ??? question "Question 1.3: In an automated prompt evaluation workflow, after candidate responses are generated, what is the mandatory next step?"
@@ -151,7 +151,7 @@
 
 ## 📝 Self-Assessment Mastery Rubric
 
-Before advancing to the Capstone Engine or Module 03, verify that you can explain each of these concepts to another engineer:
+Before advancing to the Case Study or Module 03, verify that you can explain each of these concepts to another engineer:
 
 - [x] **Clarity & Directives**: Transforming polite conversational preamble into imperative command verbs.
 - [x] **The 4 Pillars of Specificity**: Numerical bounds, temporal schedules, structural rules, and negative constraints.

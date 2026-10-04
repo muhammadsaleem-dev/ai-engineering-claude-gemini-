@@ -228,7 +228,7 @@ However, notice a critical architectural choice:
 > **Which Model Tier Should You Use to Generate Data?**
 > **Always use a fast, lightweight, cost-effective model** (such as **Claude 3.5 Haiku** or **Gemini 3.1 Flash Lite**).
 > 
-> Generating a dataset of 50 test cases is a volume task that requires diversity and strict adherence to JSON format—not multi-step mathematical theorem proving. Fast models generate 50 cases in seconds at **~95% lower cost** than flagship frontier models (Claude 3.5 Sonnet or Gemini 1.5 Pro).
+> Generating a dataset of 50 test cases is a volume task that requires diversity and strict adherence to JSON format—not multi-step mathematical theorem proving. Fast models generate 50 cases in seconds at **~95% lower cost** than larger frontier models (Claude 3.5 Sonnet or Gemini 1.5 Pro).
 
 Let us compare the implementation across both leading SDKs:
 

@@ -10,10 +10,10 @@ This project implements the full curriculum from Anthropic's **"Building with th
 
 ## Curriculum & Production Blueprints
 
-| Module | Core Architecture | Status | Reference Notebooks | Flagship Production Blueprint |
+| Module | Core Architecture | Status | Reference Notebooks | Case Study |
 | :--- | :--- | :---: | :--- | :--- |
 | **01** | **Getting Started with LLM APIs**<br>• API Fundamentals & Lifecycles<br>• Controlled Output & Schemas | **Completed** | Requests, Multi-turn, Chatbot, System Prompts, Temperature, Streaming, Prefilling | **[E-Commerce AI Support & Ticket Triage Engine](01-getting-started/case-study.ipynb)** |
-| **02** | **Prompt Engineering & Evaluation** | Up Next | Spec-Kit (SDD), Benchmark Datasets, Few-shot Chains | **Automated LLM Evaluation Benchmark Engine** |
+| **02** | **Prompt Engineering & Evaluation** | **Completed** | Prompt Evals, Techniques, XML Tags, Few-Shot, Guardrails | **[Autonomous Evaluation & Regression Benchmark Engine](02-prompt-engineering-evals/case-study.ipynb)** |
 | **03** | **Tools and Multimodal** | Planned | Function Calling, Tool Use Schemas, Vision, Document Analysis | **Multimodal Financial Invoice Auditor** |
 | **04** | **Model Context Protocol (MCP)** | Planned | Spec-Kit (SDD), FastMCP Servers, Tool Contracts | **Enterprise Database MCP Integration** |
 | **05** | **Retrieval-Augmented Generation (RAG)** | Planned | Vector Embeddings, Chunking Strategies, Semantic Search | **Internal Enterprise Hybrid Search Knowledge Engine** |
@@ -51,7 +51,7 @@ The full curriculum, architecture guides, and interactive Jupyter notebooks are 
 │   ├── 005-gemini-streaming.ipynb          # Response Streaming Companion (Google GenAI streaming & chats)
 │   ├── 006-claude-controlling-output.ipynb  # Structured JSON Output via Assistant Prefill & Stop Sequences
 │   ├── 006-gemini-controlling-output.ipynb  # Native JSON Mode & Pydantic Schema Enforcement (Gemini)
-│   ├── case-study.ipynb                    # Module 01 Flagship: E-Commerce AI Support & Ticket Engine
+│   ├── case-study.ipynb                    # Module 01 Case Study: E-Commerce AI Support & Ticket Engine
 │   ├── module-01-dialogue-review.md        # Coursera Dialogue Assessment Q&A & Cheat-sheet
 │   └── README.md                           # Comprehensive Module 1 revision guide
 │

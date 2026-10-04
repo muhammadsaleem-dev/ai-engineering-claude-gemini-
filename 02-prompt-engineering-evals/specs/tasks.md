@@ -34,7 +34,7 @@
 - [x] **Quiz on Prompt Engineering Techniques**: Passed with 100% (5/5 points)
 - [x] **Dialogue on Improving Your Prompts**: Completed interactive dialogue on prompt refinement
 
-## Phase 4: Flagship Production Capstone
+## Phase 4: Case Study Implementation
 - [x] Implement `case-study.ipynb` (**Automated Prompt Evaluation & Benchmark Engine**)
   - [x] End-to-end evaluation harness
   - [x] Side-by-side prompt regression testing (Baseline vs. Few-Shot vs. CoT)

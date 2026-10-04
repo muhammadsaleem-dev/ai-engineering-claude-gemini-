@@ -337,7 +337,7 @@ All evaluation pipelines and prompt optimization notebooks are fully coded, veri
     <div class="lms-resource-card" style="border: 1px solid rgba(99, 102, 241, 0.35); background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(6, 182, 212, 0.05));">
       <div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <span class="lms-tag-review" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">Flagship Capstone</span>
+          <span class="lms-tag-review" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">Case Study</span>
           <span class="lms-pill-type">Enterprise CI/CD Gate</span>
         </div>
         <h3 class="lms-card-title">case-study.ipynb — Autonomous Evaluation &amp; Regression Benchmark Engine</h3>
@@ -346,7 +346,7 @@ All evaluation pipelines and prompt optimization notebooks are fully coded, veri
         </p>
       </div>
       <div style="margin-top: 16px; font-size: 0.85rem; font-weight: 700; color: #6366f1;">
-        Launch Flagship Capstone Engine &rarr;
+        Launch Case Study &rarr;
       </div>
     </div>
   </a>
@@ -356,6 +356,6 @@ All evaluation pipelines and prompt optimization notebooks are fully coded, veri
 ---
 
 <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--card-border);">
-  <a href="case-study/" style="font-weight: 600; text-decoration: none;">Launch Production Capstone: Autonomous Evaluation Engine &rarr;</a>
+  <a href="case-study/" style="font-weight: 600; text-decoration: none;">Launch Case Study: Autonomous Evaluation &amp; Regression Engine &rarr;</a>
 </div>
 

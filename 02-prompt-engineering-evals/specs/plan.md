@@ -50,7 +50,7 @@ Module 02 establishes a structured progression from raw prompt crafting to autom
   - Writing an LLM-as-a-Judge grader with explicit rubric scoring (1 to 5).
   - Computing quantitative evaluation metrics: Pass Rate, Latency, and Cost.
 
-### Part 5: Flagship Capstone Blueprint (`case-study.ipynb`)
+### Part 5: Case Study (`case-study.ipynb`)
 * **Automated Prompt Evaluation & Benchmark Engine**:
   - Evaluates Candidate Prompt A (Zero-shot Baseline) vs Candidate Prompt B (XML + Few-Shot + Negative Constraints) vs Candidate Prompt C (CoT Scratchpad).
   - Generates a side-by-side benchmark table with pass rates, failure breakdown, and cost trade-offs.
