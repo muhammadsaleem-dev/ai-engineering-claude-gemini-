@@ -99,6 +99,7 @@ nav:
       - "006: Native JSON & Pydantic Schema": module-01/notebooks/006-gemini-controlling-output.ipynb
   - "Module 02: Prompt Engineering & Evals":
     - "Module Overview & Syllabus": module-02/index.md
+    - "Flagship Production Capstone": module-02/case-study.ipynb
     - "Part 1: Systematic Prompt Evaluation":
       - "1. The Evaluation Lifecycle & Datasets": module-02/01-eval-framework.md
       - "2. Hybrid Grading (Code vs. LLM-Judge)": module-02/02-grading-strategies.md

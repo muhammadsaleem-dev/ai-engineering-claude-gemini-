@@ -333,9 +333,29 @@ All evaluation pipelines and prompt optimization notebooks are fully coded, veri
     </div>
   </a>
 
+  <a href="case-study/" class="lms-resource-link" style="grid-column: 1 / -1;">
+    <div class="lms-resource-card" style="border: 1px solid rgba(99, 102, 241, 0.35); background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(6, 182, 212, 0.05));">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span class="lms-tag-review" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">Flagship Capstone</span>
+          <span class="lms-pill-type">Enterprise CI/CD Gate</span>
+        </div>
+        <h3 class="lms-card-title">case-study.ipynb — Autonomous Evaluation &amp; Regression Benchmark Engine</h3>
+        <p class="lms-card-desc">
+          Complete production-grade evaluation engine: Pairwise regression detection across Candidate A (V0), B (V2), and C (V4), 2-tier hybrid grading (deterministic code + calibrated model judge), and automated CI/CD markdown scorecard report generation across Claude and Gemini.
+        </p>
+      </div>
+      <div style="margin-top: 16px; font-size: 0.85rem; font-weight: 700; color: #6366f1;">
+        Launch Flagship Capstone Engine &rarr;
+      </div>
+    </div>
+  </a>
+
 </div>
 
 ---
 
+<div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--card-border);">
+  <a href="case-study/" style="font-weight: 600; text-decoration: none;">Launch Production Capstone: Autonomous Evaluation Engine &rarr;</a>
 </div>
 

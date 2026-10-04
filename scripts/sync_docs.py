@@ -101,6 +101,9 @@ def setup_docs():
     # Sync dataset.json
     sync_file(m2_src / "dataset.json", m2_dst / "dataset.json")
 
+    # Flagship Capstone Notebook -> docs/module-02/case-study.ipynb
+    sync_file(m2_src / "case-study.ipynb", m2_dst / "case-study.ipynb")
+
     # Sync notebooks
     m2_nb_dst = m2_dst / "notebooks"
     m2_nb_dst.mkdir(parents=True, exist_ok=True)

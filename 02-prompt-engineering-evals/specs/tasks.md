@@ -35,10 +35,10 @@
 - [x] **Dialogue on Improving Your Prompts**: Completed interactive dialogue on prompt refinement
 
 ## Phase 4: Flagship Production Capstone
-- [ ] Implement `case-study.ipynb` (**Automated Prompt Evaluation & Benchmark Engine**)
-  - [ ] End-to-end evaluation harness
-  - [ ] Side-by-side prompt regression testing (Baseline vs. Few-Shot vs. CoT)
-  - [ ] Markdown benchmark report generator
+- [x] Implement `case-study.ipynb` (**Automated Prompt Evaluation & Benchmark Engine**)
+  - [x] End-to-end evaluation harness
+  - [x] Side-by-side prompt regression testing (Baseline vs. Few-Shot vs. CoT)
+  - [x] Markdown benchmark report generator
 
 ## Phase 5: Documentation & Learning Review
 - [x] Create initial `module-02-dialogue-review.md` (Part 1 Assessment review)
