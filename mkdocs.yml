@@ -103,11 +103,17 @@ nav:
       - "1. The Evaluation Lifecycle & Datasets": module-02/01-eval-framework.md
       - "2. Hybrid Grading (Code vs. LLM-Judge)": module-02/02-grading-strategies.md
       - "3. Composite Scoring & Benchmark Runner": module-02/03-composite-scoring-runner.md
-      - "4. Interactive Knowledge Checks": module-02/knowledge-checks.md
-      - "5. Interactive Dialogue Assessment": module-02/dialogue-review.md
-    - "Interactive Evaluation Notebooks":
-      - "Anthropic Claude Evals Lab": module-02/notebooks/001-claude-prompt-evals.ipynb
-      - "Google Gemini Evals Lab": module-02/notebooks/001-gemini-prompt-evals.ipynb
+    - "Part 2: Prompt Engineering Techniques":
+      - "4. Clarity, Directives & Specificity": module-02/04-prompt-techniques-clarity.md
+      - "5. XML Tags & Few-Shot Learning": module-02/05-xml-structuring-few-shot.md
+    - "Assessments & Dialogue Reviews":
+      - "Interactive Knowledge Checks (100%)": module-02/knowledge-checks.md
+      - "Interactive Dialogue Reviews (Advanced)": module-02/dialogue-review.md
+    - "Interactive Hands-on Laboratories":
+      - "Claude 001: Evaluation Pipeline Lab": module-02/notebooks/001-claude-prompt-evals.ipynb
+      - "Gemini 001: Evaluation Companion": module-02/notebooks/001-gemini-prompt-evals.ipynb
+      - "Claude 002: Prompt Optimization Lab": module-02/notebooks/002-claude-prompt-techniques.ipynb
+      - "Gemini 002: Prompt Optimization Companion": module-02/notebooks/002-gemini-prompt-techniques.ipynb
   - "Module 03: Tools and Multimodal": module-03/index.md
   - "Module 04: Model Context Protocol (MCP)": module-04/index.md
   - "Module 05: Retrieval-Augmented Generation": module-05/index.md

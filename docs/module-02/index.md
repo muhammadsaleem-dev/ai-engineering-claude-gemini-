@@ -15,19 +15,19 @@
     </div>
     <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
       <span class="lms-status-pill">
-        <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span> Part 1: Evals Completed (100%)
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span> Parts 1 &amp; 2 Completed (100%)
       </span>
-      <span class="lms-meta-text">Est. Total Study Time: 65 min • Level: Senior AI Engineering</span>
+      <span class="lms-meta-text">Est. Total Study Time: 120 min • Level: Senior AI Engineering</span>
     </div>
   </div>
 
   <div style="margin-top: 20px;">
     <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 6px;" class="lms-subtitle">
-      <span>Curriculum Progress: <strong>50% (Part 1 Done, Part 2 In Progress)</strong></span>
-      <span>4 / 4 Quiz Points • Dialogue Assessed (Advanced Proficiency)</span>
+      <span>Curriculum Progress: <strong>100% (Part 1: Evals &amp; Part 2: Techniques Completed)</strong></span>
+      <span>9 / 9 Quiz Points • 2 Interactive Dialogues Assessed (Advanced Proficiency)</span>
     </div>
     <div class="lms-progress-bar-bg">
-      <div style="width: 50%; height: 100%; background: linear-gradient(90deg, #6366f1, #06b6d4); border-radius: 4px; transition: width 0.4s ease;"></div>
+      <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #6366f1, #10b981); border-radius: 4px; transition: width 0.4s ease;"></div>
     </div>
   </div>
 </div>
@@ -60,7 +60,7 @@ Vibe-checking is the single greatest cause of catastrophic failures, security vu
 > [!IMPORTANT]
 > **The Fundamental Axiom of AI Engineering**:
 > **Evaluations (evals) ARE your unit tests.**
-> Before you touch a single word of your prompt, you must build the evaluation harness that quantitatively measures its baseline accuracy, syntax conformance, and edge-case behavior.
+> Before you touch a single word of your prompt, you must build the evaluation harness that quantitatively measures its baseline accuracy, syntax conformance, and edge-case behavior. Once your test harness is established, apply systematic prompt engineering (clarity, specificity, XML structuring, and few-shot exemplars) to optimize statistical performance.
 
 ---
 
@@ -73,7 +73,9 @@ By working through the modular units and interactive notebooks in this module, y
 3. **High-Speed Synthetic Generation**: Using lightweight models (Claude Haiku / Gemini Flash) to generate test datasets at 95% lower cost.
 4. **Deterministic Code Graders**: Implementing sub-millisecond, zero-cost syntax verification using Python `ast.parse()`, `json.loads()`, and `re.compile()`, while avoiding the security vulnerabilities of `eval()`.
 5. **Calibrated Model Graders (LLM-as-a-Judge)**: Eliminating the statistical "Anchoring Trap" (why models default to 7) using reasoning precedence and multi-attribute rubrics.
-6. **Composite Scoring & Error Triage**: Calculating balanced mathematical scores and executing regression suites to verify that prompt fixes do not introduce regressions.
+6. **Core Prompt Engineering Principles**: Applying imperative directive verbs, specialized personas, and concrete numerical boundaries.
+7. **XML Tag Architecture**: Utilizing semantic delimiter tags (`<context>`, `<document>`, `<rules>`) to eliminate prompt injection and structure multi-document contexts.
+8. **In-Context Few-Shot Exemplars**: Anchoring output schemas, formatting density, and resolving subtle edge cases like sarcasm detection.
 
 ---
 
@@ -137,20 +139,56 @@ Module 02 is broken into bite-sized, sequential lectures designed for university
     </div>
   </a>
 
+  <a href="04-prompt-techniques-clarity/" class="lms-resource-link">
+    <div class="lms-resource-card">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span class="lms-tag-claude">Lecture 2.1</span>
+          <span class="lms-pill-type">Techniques</span>
+        </div>
+        <h3 class="lms-card-title">4. Clarity, Directives &amp; Specificity</h3>
+        <p class="lms-card-desc">
+          Eliminating conversational preamble, setting imperative task verbs, persona decoupling, and the 4 pillars of specificity (numerical, temporal, structural, and negative bounds).
+        </p>
+      </div>
+      <div style="margin-top: 16px; font-size: 0.82rem; font-weight: 700; color: #6366f1;">
+        Read Lecture 2.1 &rarr;
+      </div>
+    </div>
+  </a>
+
+  <a href="05-xml-structuring-few-shot/" class="lms-resource-link">
+    <div class="lms-resource-card">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span class="lms-tag-gemini">Lecture 2.2</span>
+          <span class="lms-pill-type">Structural Mastery</span>
+        </div>
+        <h3 class="lms-card-title">5. XML Tags &amp; Few-Shot In-Context Learning</h3>
+        <p class="lms-card-desc">
+          XML delimiter architecture for prompt injection defense, multi-document attention gating, one-shot vs. multi-shot exemplars, and mastering subtle edge cases like sarcasm detection.
+        </p>
+      </div>
+      <div style="margin-top: 16px; font-size: 0.82rem; font-weight: 700; color: #0284c7;">
+        Read Lecture 2.2 &rarr;
+      </div>
+    </div>
+  </a>
+
   <a href="knowledge-checks/" class="lms-resource-link">
     <div class="lms-resource-card">
       <div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <span class="lms-tag-review">Unit 1.4</span>
+          <span class="lms-tag-review">Unit 2.3</span>
           <span class="lms-pill-type">Self-Assessment</span>
         </div>
-        <h3 class="lms-card-title">4. Interactive Knowledge Checks</h3>
+        <h3 class="lms-card-title">6. Knowledge Checks &amp; Quizzes (100%)</h3>
         <p class="lms-card-desc">
-          Interactive quiz cards with clickable reveals and in-depth architectural rationales covering evaluation risks, dataset tiers, and AST security.
+          Interactive quiz cards covering both Part 1 and Part 2 quizzes: workout planning, sarcasm few-shotting, prompt engineering definitions, AST security, and XML delimiters.
         </p>
       </div>
       <div style="margin-top: 16px; font-size: 0.82rem; font-weight: 700; color: #f59e0b;">
-        Take Knowledge Check &rarr;
+        Take Knowledge Checks &rarr;
       </div>
     </div>
   </a>
@@ -159,16 +197,16 @@ Module 02 is broken into bite-sized, sequential lectures designed for university
     <div class="lms-resource-card">
       <div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <span class="lms-tag-claude">Unit 1.5</span>
-          <span class="lms-pill-type">Oral Assessment</span>
+          <span class="lms-tag-claude">Unit 2.4</span>
+          <span class="lms-pill-type">Oral Assessments</span>
         </div>
-        <h3 class="lms-card-title">5. Interactive Dialogue Assessment</h3>
+        <h3 class="lms-card-title">7. Interactive Dialogue Reviews</h3>
         <p class="lms-card-desc">
-          Complete study review covering the 4-stage interactive technical dialogue, demonstrating failure triage, regression prevention, and Advanced Proficiency rating.
+          Complete study records for both technical dialogue assessments: Designing Evaluation Pipelines and Improving Vague Prompts, assessed at Advanced Proficiency.
         </p>
       </div>
       <div style="margin-top: 16px; font-size: 0.82rem; font-weight: 700; color: #8b5cf6;">
-        Read Dialogue Assessment &rarr;
+        Read Dialogue Assessments &rarr;
       </div>
     </div>
   </a>
@@ -188,13 +226,13 @@ Throughout this module, every concept is implemented with complete feature parit
       <span class="lms-tag-claude">Anthropic Claude</span>
       <span class="lms-pill-type">anthropic SDK</span>
     </div>
-    <h3 class="lms-card-title">Assistant Prefill Strategy</h3>
+    <h3 class="lms-card-title">XML Delimiters &amp; Prefill</h3>
     <p class="lms-card-desc">
-      Anthropic uses <strong>Assistant Message Prefilling</strong>:
+      Anthropic natively recognizes XML tags (<code>&lt;context&gt;</code>, <code>&lt;rules&gt;</code>, <code>&lt;instructions&gt;</code>) for boundary protection and supports <strong>Assistant Message Prefilling</strong>:
       <br>
       <code>messages.append({"role": "assistant", "content": "```json"})</code>
       <br><br>
-      Combined with <code>stop_sequences=["```"]</code>, this technique primes Claude's autoregressive generation to start directly at the JSON array without preambles or conversational noise.
+      This anchors token generation and cleanly decouples instructions from untrusted user content.
     </p>
   </div>
 
@@ -203,13 +241,13 @@ Throughout this module, every concept is implemented with complete feature parit
       <span class="lms-tag-gemini">Google Gemini</span>
       <span class="lms-pill-type">google-genai SDK</span>
     </div>
-    <h3 class="lms-card-title">Native Schema Enforcement</h3>
+    <h3 class="lms-card-title">Native Schemas &amp; system_instruction</h3>
     <p class="lms-card-desc">
-      Gemini uses <strong>Native Token Constrained Decoding</strong>:
+      Gemini cleanly decouples personas via <strong>system_instruction</strong> and enforces schemas at the logit level:
       <br>
-      <code>config=types.GenerateContentConfig(response_mime_type="application/json", response_schema=list[TestCase])</code>
+      <code>config=types.GenerateContentConfig(system_instruction=..., response_mime_type="application/json", response_schema=BaseModel)</code>
       <br><br>
-      Gemini constrains decoder logits at the token level, guaranteeing 100% valid JSON conforming to Pydantic type annotations with zero prompt hacks.
+      Guarantees 100% type-safe JSON and structured markdown section parsing without extra syntax hacks.
     </p>
   </div>
 
@@ -219,7 +257,7 @@ Throughout this module, every concept is implemented with complete feature parit
 
 ## 💻 Interactive Jupyter Laboratories
 
-Both evaluation pipelines are fully coded, verified, and runnable in your local workspace:
+All evaluation pipelines and prompt optimization notebooks are fully coded, verified, and runnable in your local workspace:
 
 <div class="lms-resource-grid">
 
@@ -228,11 +266,11 @@ Both evaluation pipelines are fully coded, verified, and runnable in your local 
       <div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
           <span class="lms-tag-claude">Anthropic Claude</span>
-          <span class="lms-pill-type">Master Notebook</span>
+          <span class="lms-pill-type">Part 1 Notebook</span>
         </div>
         <h3 class="lms-card-title">001-claude-prompt-evals.ipynb</h3>
         <p class="lms-card-desc">
-          Complete 20-cell educational master notebook implementing the 3-layer eval harness, assistant prefilling, deterministic AST syntax validation, and composite scoring.
+          Foundational 20-cell educational master notebook implementing the 3-layer eval harness, synthetic dataset generation, deterministic AST syntax validation, and composite scoring.
         </p>
       </div>
       <div style="margin-top: 16px; font-size: 0.82rem; font-weight: 700; color: #6366f1;">
@@ -246,11 +284,47 @@ Both evaluation pipelines are fully coded, verified, and runnable in your local 
       <div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
           <span class="lms-tag-gemini">Google Gemini</span>
-          <span class="lms-pill-type">Companion Notebook</span>
+          <span class="lms-pill-type">Part 1 Companion</span>
         </div>
         <h3 class="lms-card-title">001-gemini-prompt-evals.ipynb</h3>
         <p class="lms-card-desc">
-          Gemini 3.1 Flash Lite companion implementing native Pydantic schema generation, AST syntax grading, and full evaluation suite execution.
+          Gemini 3.1 Flash Lite companion implementing native Pydantic schema generation, AST syntax grading, and full evaluation suite execution with dual-API parity.
+        </p>
+      </div>
+      <div style="margin-top: 16px; font-size: 0.82rem; font-weight: 700; color: #0284c7;">
+        Open Interactive Notebook &rarr;
+      </div>
+    </div>
+  </a>
+
+  <a href="notebooks/002-claude-prompt-techniques/" class="lms-resource-link">
+    <div class="lms-resource-card">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span class="lms-tag-claude">Anthropic Claude</span>
+          <span class="lms-pill-type">Part 2 Notebook</span>
+        </div>
+        <h3 class="lms-card-title">002-claude-prompt-techniques.ipynb</h3>
+        <p class="lms-card-desc">
+          Multi-iteration prompt engineering lab: Moving from V0 (vague, 2.3/10) to V4 (XML + Few-shot, 9.8/10), measuring the exact quantitative score gain of each technique.
+        </p>
+      </div>
+      <div style="margin-top: 16px; font-size: 0.82rem; font-weight: 700; color: #6366f1;">
+        Open Interactive Notebook &rarr;
+      </div>
+    </div>
+  </a>
+
+  <a href="notebooks/002-gemini-prompt-techniques/" class="lms-resource-link">
+    <div class="lms-resource-card">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span class="lms-tag-gemini">Google Gemini</span>
+          <span class="lms-pill-type">Part 2 Companion</span>
+        </div>
+        <h3 class="lms-card-title">002-gemini-prompt-techniques.ipynb</h3>
+        <p class="lms-card-desc">
+          Google Gemini 2.5 Flash companion lab demonstrating <code>system_instruction</code>, structured markdown section delimiters, and few-shot in-context learning.
         </p>
       </div>
       <div style="margin-top: 16px; font-size: 0.82rem; font-weight: 700; color: #0284c7;">
@@ -263,6 +337,5 @@ Both evaluation pipelines are fully coded, verified, and runnable in your local 
 
 ---
 
-<div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--card-border);">
-  <a href="01-eval-framework/" style="font-weight: 600; text-decoration: none;">Start Learning: Lecture 1: The Evaluation Lifecycle &rarr;</a>
 </div>
+

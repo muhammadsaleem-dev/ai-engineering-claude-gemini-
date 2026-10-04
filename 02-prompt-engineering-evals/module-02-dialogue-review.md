@@ -129,9 +129,177 @@ PROFICIENCY LEVEL: ADVANCED
 ================================================================================
 ```
 
+
+---
+
+# Dialogue Assessment 2: Improving Your Prompts
+
+This section provides the complete technical transcript and architectural breakdown of Coursera's **Dialogue on Improving Your Prompts** (*Building with the Claude API* • Module 02 Part 2).
+
+---
+
+## 📋 Assessment Overview
+
+- **Topic**: Iterative Prompt Refinement & Best Practices
+- **Focus Areas**:
+  1. Diagnosing Root Causes of Vague Prompt Failures
+  2. Enforcing Specificity, Personas, and Numerical Constraints
+  3. XML Tag Architecture for Context & Injection Defense
+  4. Few-Shot In-Context Exemplars for Tone and Nuance
+- **Status**: `✓ Completed` (Assessed at **Advanced Proficiency**)
+
+---
+
+## 💬 The Dialogue Transcript & Technical Analysis
+
+### 🔹 Topic 1: Diagnosing Vague Prompt Failures
+
+#### **The Baseline Vague Prompt**:
+```
+"Summarize this article."
+```
+
+#### **Evaluator Question**:
+> *"Imagine you want an AI to help you summarize a long article, but you've only given it this prompt: `'Summarize this article.'` Based on what you know about prompt engineering, why might this prompt lead to inconsistent or poor results?"*
+
+#### **Core Architectural Concept**:
+- Open-ended prompts force the model to infer implicit assumptions about length, target audience, technical depth, and structure.
+- The model's latent probability distribution produces high variance across runs: one run yields a 2-sentence blurb, while the next produces a 500-word paragraph.
+
+#### **Submitted Response**:
+> *"That prompt underperforms because it lacks 5 essential software engineering parameters:*
+> 
+> 1. ***Missing Persona & Audience***: *It does not specify who the summary is for (an executive, a junior engineer, or a general reader).*
+> 2. ***Missing Length & Boundary Constraints***: *No target word count or token limit is provided.*
+> 3. ***Missing Output Structure***: *It fails to specify whether the response should be prose, bullet points, or structured JSON.*
+> 4. ***Missing Content Priorities***: *It does not state whether to prioritize strategic business metrics, technical architecture, or high-level takeaways.*
+> 5. ***High Output Variance***: *The model will produce wildly different responses across different runs, making automated validation impossible."*
+
+#### **Evaluation Feedback**:
+> *"Spot on! You've hit on the key reasons why that prompt is likely to underperform. It leaves far too much up to interpretation."*
+
+---
+
+### 🔹 Topic 2: Applying Specificity, Personas, and Constraints
+
+#### **Evaluator Question**:
+> *"If you were to rewrite that prompt to ensure the AI provides a concise, professional summary tailored for a busy executive, what specific details or constraints would you add to the prompt?"*
+
+#### **Core Architectural Concept**:
+- Specificity grounds the output by bounding token generation, enforcing formatting rules, and setting tone expectations upfront.
+
+#### **Submitted Response**:
+> *"I would rewrite the prompt with these 5 concrete constraints:*
+> 
+> 1. ***Executive Persona***: *'You are a senior executive chief of staff preparing a briefing.'*
+> 2. ***Format & Length Bounds***: *'Limit the summary to exactly 3 to 5 bullet points, strictly under 150 words total.'*
+> 3. ***Strategic Focus***: *'Highlight key business impacts, revenue implications, and risk factors; omit background fluff.'*
+> 4. ***Actionable Deliverables***: *'End with a 1-sentence recommended decision or next step.'*
+> 5. ***Tone Directive***: *'Use concise, professional language with zero conversational preamble.'*"*
+
+#### **Evaluation Feedback**:
+> *"That's an excellent revision! By adding those specific constraints and a clear persona, you've significantly narrowed the scope and set clear expectations for the model."*
+
+---
+
+### 🔹 Topic 3: Structuring with XML Tags
+
+#### **Evaluator Question**:
+> *"Why might using XML tags, such as `<article>` or `<instructions>`, be beneficial when you're building a more complex prompt that includes both the source text and specific formatting requirements?"*
+
+#### **Core Architectural Concept**:
+- XML tags provide hard structural boundaries that prevent the model from confusing untrusted user text with system operational rules.
+- They guard against prompt injection vulnerabilities and serve as unambiguous parsing anchors for downstream regex and JSON parsers.
+
+#### **Submitted Response**:
+> *"XML tags are essential for 3 reasons:*
+> 
+> 1. ***Boundary Isolation & Prompt Injection Defense***: *Tags like `<article>` clearly separate passive content from operational `<instructions>`. If the article contains text like 'Ignore previous rules', Claude knows it is just text inside `<article>` and ignores it.*
+> 2. ***Attention Gating***: *Tags make it easy for Claude to index and cross-reference multiple documents (e.g. `<document id='1'>`, `<document id='2'>`).*
+> 3. ***Programmatic Output Extraction***: *Wrapping instructions in `<output_format>` allows backend regex or XML parsers to cleanly extract structured responses."*
+
+#### **Evaluation Feedback**:
+> *"That's exactly right; using XML tags is a powerful way to provide clear boundaries for the model, which helps it distinguish between the content it needs to process and the instructions it needs to follow."*
+
+---
+
+### 🔹 Topic 4: Implementing Few-Shot In-Context Learning
+
+#### **Evaluator Question**:
+> *"Can you explain what few-shot learning is and why providing examples in your prompt can lead to better results compared to a zero-shot approach?"*
+
+#### **Core Architectural Concept**:
+- Zero-shot prompting relies solely on descriptive English instructions, which can be interpreted ambiguously.
+- Few-shot prompting demonstrates the exact input-output transformation mapping, anchoring formatting density, tone, and nuanced classification boundaries (such as sarcasm).
+
+#### **Submitted Response**:
+> *"Few-shot learning is the practice of providing sample input-output pairs (exemplars) directly inside the prompt context before issuing the final task.*
+> 
+> *It outperforms zero-shot instructions because:*
+> 1. ***Demonstration over Description***: *Showing a model an ideal summary teaches tone, conciseness, and bullet formatting far more effectively than paragraphs of descriptive text.*
+> 2. ***Edge Case & Nuance Mastery***: *For difficult tasks like sarcasm detection, descriptive rules like 'be careful about sarcasm' fail, but providing 2 examples of sarcastic comments labeled as 'Negative' immediately aligns the model's classifications.*
+> 3. ***Schema Consistency***: *It establishes an unambiguous output pattern that prevents the model from injecting unwanted conversational filler."*
+
+#### **Evaluation Feedback**:
+> *"Spot on! You've perfectly captured how providing examples helps the model understand the desired pattern and style."*
+
+---
+
+## 🔄 Side-by-Side Prompt Transformation Diff
+
+```diff
+- Summarize this article.
++ You are a senior executive assistant. Your task is to extract an actionable executive briefing from the article provided below.
++ 
++ <article>
++ [Insert source article text here]
++ </article>
++ 
++ <guidelines>
++ 1. Format: Exactly 3 to 5 bullet points summarizing strategic impacts.
++ 2. Length: Strictly under 150 words total.
++ 3. Focus: Prioritize business revenue, organizational risks, and key decisions.
++ 4. Tone: Direct, concise, and professional; zero introductory pleasantries.
++ 5. Next Steps: Conclude with a single bolded action recommendation.
++ </guidelines>
++ 
++ <example>
++ <sample_input>
++ Q3 Earnings call notes on supply chain disruptions in APAC...
++ </sample_input>
++ <ideal_output>
++ • Supply chain lead times extended by 14 days due to port congestion.
++ • Q3 operating margins impacted by 2.1% from expedited freight costs.
++ • Inventory buffer increased to 45 days to mitigate Q4 holiday risk.
++ **Recommended Action:** Authorize secondary supplier agreements in EMEA by Oct 15.
++ </ideal_output>
++ </example>
+```
+
+---
+
+## 🏆 Assessment Verdict & Synthesis
+
+```
+================================================================================
+                           ASSESSMENT SUMMARY (PART 2)
+================================================================================
+Topic: Iterative Prompt Refinement & Best Practices
+
+STRENGTHS DEMONSTRATED:
+✓ Clearly diagnosed why unconstrained prompts fail under production traffic.
+✓ Expertly applied the 4 pillars of specificity: persona, length bounds, format, and focus.
+✓ Articulated the security and architectural advantages of XML tags for injection defense.
+✓ Defined few-shot learning and explained why exemplars ground nuanced edge cases (e.g. sarcasm).
+
+PROFICIENCY LEVEL: ADVANCED
+================================================================================
+```
+
 ---
 
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--card-border);">
   <a href="../knowledge-checks/" style="font-weight: 600; text-decoration: none;">&larr; Back to Knowledge Checks</a>
   <a href="../" style="font-weight: 600; text-decoration: none;">Back to Module 02 Syllabus &rarr;</a>
 </div>
+

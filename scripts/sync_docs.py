@@ -91,6 +91,8 @@ def setup_docs():
     sync_file(m2_src / "01-eval-framework.md", m2_dst / "01-eval-framework.md")
     sync_file(m2_src / "02-grading-strategies.md", m2_dst / "02-grading-strategies.md")
     sync_file(m2_src / "03-composite-scoring-runner.md", m2_dst / "03-composite-scoring-runner.md")
+    sync_file(m2_src / "04-prompt-techniques-clarity.md", m2_dst / "04-prompt-techniques-clarity.md")
+    sync_file(m2_src / "05-xml-structuring-few-shot.md", m2_dst / "05-xml-structuring-few-shot.md")
     sync_file(m2_src / "knowledge-checks.md", m2_dst / "knowledge-checks.md")
 
     # Sync Dialogue Review

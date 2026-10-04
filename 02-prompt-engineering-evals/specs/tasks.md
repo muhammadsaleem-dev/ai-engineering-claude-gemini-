@@ -23,11 +23,16 @@
 - [x] **Quiz on Prompt Evaluation**: Passed with 100% (4/4 points)
 - [x] **Dialogue on Evaluation**: Completed with advanced proficiency assessment
 
-## Phase 3: Part 2 - Prompt Engineering Techniques (Upcoming)
-- [ ] **Lesson 8: Being Clear & Direct**
-- [ ] **Lesson 9: Being Specific**
-- [ ] **Lesson 10: Structure with XML Tags**
-- [ ] **Lesson 11: Providing Examples (Few-Shot / Multishot)**
+## Phase 3: Part 2 - Prompt Engineering Techniques
+- [x] **Official Coursera Assets Extracted & Downloaded**
+  - [x] Extracted lecture transcripts and slides across all 5 videos
+  - [x] Downloaded official starter notebook [`coursera_snapshots/001_prompting.ipynb`](coursera_snapshots/001_prompting.ipynb)
+  - [x] Downloaded official solution notebook [`coursera_snapshots/002_prompting_completed.ipynb`](coursera_snapshots/002_prompting_completed.ipynb)
+- [x] **Dual-API Interactive Notebooks**
+  - [x] Implement [`002-claude-prompt-techniques.ipynb`](../002-claude-prompt-techniques.ipynb) (Clarity, Specificity, XML Tags, Few-Shot, Sarcasm Edge Case, and PromptEvaluator loop)
+  - [x] Implement [`002-gemini-prompt-techniques.ipynb`](../002-gemini-prompt-techniques.ipynb) (Google Gemini parity with `system_instruction`, structured markdown delimiters, and Pydantic schemas)
+- [x] **Quiz on Prompt Engineering Techniques**: Passed with 100% (5/5 points)
+- [x] **Dialogue on Improving Your Prompts**: Completed interactive dialogue on prompt refinement
 
 ## Phase 4: Flagship Production Capstone
 - [ ] Implement `case-study.ipynb` (**Automated Prompt Evaluation & Benchmark Engine**)
@@ -36,7 +41,12 @@
   - [ ] Markdown benchmark report generator
 
 ## Phase 5: Documentation & Learning Review
-- [x] Create `module-02-dialogue-review.md` (Dialogue Assessment review)
-- [x] Create modular university-grade curriculum sub-pages (`01-eval-framework.md`, `02-grading-strategies.md`, `03-composite-scoring-runner.md`, `knowledge-checks.md`)
+- [x] Create initial `module-02-dialogue-review.md` (Part 1 Assessment review)
+- [x] Create initial curriculum sub-pages (`01-eval-framework.md`, `02-grading-strategies.md`, `03-composite-scoring-runner.md`, `knowledge-checks.md`)
+- [x] Create Part 2 lecture pages:
+  - [x] `04-prompt-techniques-clarity.md` (Clarity, Direct Directives, Specific Constraints)
+  - [x] `05-xml-structuring-few-shot.md` (XML Tag Architecture, In-Context Few-Shot Learning, Nuance & Sarcasm)
+- [x] Expand `knowledge-checks.md` with Part 2 Quiz questions and deep pedagogical rationales
+- [x] Expand `dialogue-review.md` with Part 2 Dialogue analysis and prompt diffs
 - [x] Update `02-prompt-engineering-evals/README.md` and `docs/module-02/index.md`
 - [x] Verify live site rendering and interactive routing on local dev server
